@@ -1,3 +1,3 @@
 class Group < ApplicationRecord
-  belongs_to :students_group
+  has_many :students_groups
 end
