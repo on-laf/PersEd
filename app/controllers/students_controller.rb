@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   def index
-    @students = Student.all
+    @students = policy_scope(Student)
   end
 
   def show
@@ -9,10 +9,13 @@ class StudentsController < ApplicationController
 
   def new
     @student = Student.new
+    authorize @student
   end
 
   def create
     @student = Student.new(student_params)
+    @student.user = current_user
+    authorize @student
     if @student.save
       redirect_to student_path(@student)
     else
