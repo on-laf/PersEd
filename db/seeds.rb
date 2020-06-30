@@ -19,7 +19,7 @@ puts 'Creating teachers...'
     )
   new_user.save
   new_teacher = Teacher.new(
-    user_id: new_user.id,
+    user: new_user,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     )
@@ -39,7 +39,7 @@ puts 'Creating teachers...'
     #     )
     5.times do
       new_group = Group.new(
-        teacher_id: new_teacher.id,
+        teacher: new_teacher,
         class_name: "#{Faker::Educator.course_name}: #{rand(1..30)}"
         )
       new_group.save
@@ -55,7 +55,7 @@ puts 'Creating Students...'
     )
   new_user.save
   new_student = Student.new(
-    user_id: new_user.id,
+    user: new_user,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     )
