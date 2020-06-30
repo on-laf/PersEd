@@ -15,6 +15,15 @@ ActiveRecord::Schema.define(version: 2020_06_30_140737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "students", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
   create_table "teachers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
