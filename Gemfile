@@ -5,6 +5,8 @@ ruby '2.6.6'
 
 # Gems we have added
 gem 'faker'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary', '~> 1.12.0'
 gem 'pundit'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
