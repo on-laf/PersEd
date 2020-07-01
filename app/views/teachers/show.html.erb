@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="d-flex my-5">
+    <div class="mr-5">
+      <% if current_user.profile_photo? %>
+        <%= cl_image_tag current_user.photo.key, height: 150, width: 150, crop: :thumb, gravity: :face, class: "avatar-xl" %>
+      <% else %>
+        <i class="fas fa-user-circle" style="font-size: 150px;"></i>
+      <% end %>
+    </div>
+    <div class="d-flex flex-column justify-content-center">
+      <h5><%= @teacher.first_name %> <%= @teacher.last_name %></h5>
+      <p><%= current_user.email %></p>
+      <%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-outline-dark" %>
+    </div>
+  </div>
+  <div>
+    <h6><%= pluralize @teacher.subjects.size, 'Subject' %></h6>
+    <% @teacher.subjects.each do |subject| %>
+      <p>
+        <%= subject.subject_name %>
+        <%= link_to teacher_teacher_subject_path(@teacher, @teacher_subjects.find_by(subject: subject)),
+            method: :delete,
+            data: { confirm: "Are you sure?" } do %>
+            <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </p>
+    <% end %>
+    <br>
+    <%= simple_form_for [@teacher, @teacher_subject] do |f| %>
+      <%= f.association :subject, label_method: :subject_name, collection: @subjects, label: 'Add a new subject' %>
+      <%= f.submit 'Add Subject', class: "btn btn-outline-dark" %>
+    <% end %>
+  </div>
+</div>
