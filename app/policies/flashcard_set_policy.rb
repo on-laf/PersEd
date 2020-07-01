@@ -22,6 +22,6 @@ class FlashcardSetPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user == user
+    record.teacher == user.teacher
   end
 end

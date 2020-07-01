@@ -32,7 +32,7 @@ class FlashcardSetsController < ApplicationController
   def update
     authorize @flashcard_set
     if @flashcard_set.update(flashcard_set_params)
-      redirect_to(@flashcard_set)
+      redirect_to @flashcard_set
     else
       render :edit
     end

@@ -1,15 +1,15 @@
 <div class="container">
-<%= link_to "Hey #{current_teacher.first_name} add a new set here!",
-new_flashcard_set_path, class: 'btn btn-primary mb-3 mt-3' %>
+  <%= link_to "Hey #{current_teacher.first_name} add a new set here!",
+  new_flashcard_set_path, class: 'btn btn-primary mb-3 mt-3' %>
 
 
-<div class="flashcard_sets_card">
-  <!-- <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" /> -->
-  <div class="flashcard_sets_card_infos">
-    <% @flashcard_sets.each do |fs| %>
-      <%= link_to fs do %>
-        <h2><%= fs.name %></h2>
+    <div class="flashcard_sets_card">
+      <div class="flashcard_sets_card_infos">
+        <% @flashcard_sets.each do |fs| %>
+          <%= link_to fs do %>
+            <h2><%= fs.name %></h2>
+          <% end %>
+        </div>
       <% end %>
     </div>
-  <% end %>
-</div>
+  /<div>
