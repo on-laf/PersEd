@@ -1,10 +1,12 @@
 class StudentsController < ApplicationController
+  before_action :find_student, only: [:show, :edit, :update, :destroy]
+
   def index
     @students = policy_scope(Student)
   end
 
   def show
-    @student = Student.find(params[:id])
+    authorize @student
   end
 
   def new
@@ -19,11 +21,28 @@ class StudentsController < ApplicationController
     if @student.save
       redirect_to student_path(@student)
     else
-      render 'new'
+      render :new
+    end
+  end
+
+  def edit
+    authorize @student
+  end
+
+  def update
+    authorize @student
+    if @student.update(student_params)
+      redirect_to student_path(@student)
+    else
+      render :edit
     end
   end
 
   private
+
+  def find_student
+    @student = Student.find(params[:id])
+  end
 
   def student_params
     params.require(:student).permit(:first_name, :last_name)

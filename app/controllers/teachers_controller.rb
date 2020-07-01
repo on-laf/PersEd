@@ -23,6 +23,12 @@ class TeachersController < ApplicationController
 
   def show
     authorize @teacher
+    @teacher_subject = TeacherSubject.new
+    authorize @teacher_subject
+    @teacher_subjects = TeacherSubject.where(teacher: @teacher)
+    authorize @teacher_subjects
+    # @subjects = Subject.all.pluck(:subject_name)
+    @subjects = Subject.all
   end
 
   def edit

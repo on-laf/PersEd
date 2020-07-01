@@ -45,5 +45,9 @@ class ApplicationPolicy
     def resolve
       scope.all
     end
+
+    def current_teacher
+      user&.teacher
+    end
   end
 end

@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 2020_07_01_135907) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["teacher_id"], name: "index_groups_on_teacher_id"
   end
+  
+  create_table "flashcard_sets", force: :cascade do |t|
+    t.string "name"
+    t.bigint "teacher_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["teacher_id"], name: "index_flashcard_sets_on_teacher_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string "first_name"
@@ -61,6 +69,21 @@ ActiveRecord::Schema.define(version: 2020_07_01_135907) do
     t.index ["group_id"], name: "index_students_groups_on_group_id"
     t.index ["student_id"], name: "index_students_groups_on_student_id"
   end
+  
+  create_table "subjects", force: :cascade do |t|
+    t.string "subject_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teacher_subjects", force: :cascade do |t|
+    t.bigint "teacher_id", null: false
+    t.bigint "subject_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subject_id"], name: "index_teacher_subjects_on_subject_id"
+    t.index ["teacher_id"], name: "index_teacher_subjects_on_teacher_id"
+  end
 
   create_table "teachers", force: :cascade do |t|
     t.string "first_name"
@@ -71,6 +94,14 @@ ActiveRecord::Schema.define(version: 2020_07_01_135907) do
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
+  create_table "topics", force: :cascade do |t|
+    t.string "topic_name"
+    t.bigint "subject_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subject_id"], name: "index_topics_on_subject_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -79,7 +110,6 @@ ActiveRecord::Schema.define(version: 2020_07_01_135907) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "teacher?", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -88,5 +118,9 @@ ActiveRecord::Schema.define(version: 2020_07_01_135907) do
   add_foreign_key "groups", "teachers"
   add_foreign_key "students_groups", "groups"
   add_foreign_key "students_groups", "students"
+  add_foreign_key "flashcard_sets", "teachers"
+  add_foreign_key "teacher_subjects", "subjects"
+  add_foreign_key "teacher_subjects", "teachers"
   add_foreign_key "teachers", "users"
+  add_foreign_key "topics", "subjects"
 end
