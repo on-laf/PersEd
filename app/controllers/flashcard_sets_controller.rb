@@ -40,6 +40,8 @@ class FlashcardSetsController < ApplicationController
 
   def destroy
     authorize @flashcard_set
+    @flashcard_set.destroy
+    redirect_to flashcard_sets_path
   end
 
   private
