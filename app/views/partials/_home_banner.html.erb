@@ -1,0 +1,10 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1523908511403-7fc7b25592f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80);">
+  <div class="container">
+    <h1>PersEd monitor your studying/teaching progress effortlessly</h1>
+    <p>When homeworks are pleasure</p>
+
+    <%= link_to 'Register as a teacher', new_user_registration_path(teacher: true), class: 'btn btn-primary' %>
+    <%= link_to 'Register as a student', new_user_registration_path(teacher: false), class: 'btn btn-secondary' %>
+    <!-- <a type="button" class="btn btn-outline-light" class="nav-link" href="/users/sign_up">Sign up</a> -->
+  </div>
+</div>

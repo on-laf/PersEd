@@ -1,4 +1,1 @@
-<h1>Welcome to PersEd</h1>
-<%= link_to 'Register as a teacher', new_user_registration_path(teacher: true), class: 'btn btn-primary' %>
-<%= link_to 'Register as a student', new_user_registration_path(teacher: false), class: 'btn btn-secondary' %>
-<%= link_to 'Edit teacher',  edit_user_registration_path(teacher: true)%>
+<%= render "partials/home_banner" %>
