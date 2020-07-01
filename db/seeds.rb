@@ -8,7 +8,11 @@
 require "open-uri"
 
 puts 'Cleaning the database...'
+Group.destroy_all
+Teacher.destroy_all
+Student.destroy_all
 User.destroy_all
+
 
 puts 'Creating teachers...'
 10.times do

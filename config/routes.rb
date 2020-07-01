@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :teachers do
     resources :teacher_subjects, only: [:create, :destroy]
-    resources :groups
+    resources :study_groups
     resources :flashcards_set
     resources :flashcards do
       resources :student_flashcards
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :students do
     resources :student_flashcards_set
     resources :student_flashcards
+    resources :students_groups
+
   end
   resources :topics
 end

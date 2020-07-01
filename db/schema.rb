@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_30_142144) do
+ActiveRecord::Schema.define(version: 2020_07_01_135907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 2020_06_30_142144) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "class_name"
+    t.bigint "teacher_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["teacher_id"], name: "index_groups_on_teacher_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -43,6 +51,15 @@ ActiveRecord::Schema.define(version: 2020_06_30_142144) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
+  create_table "students_groups", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "student_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_students_groups_on_group_id"
+    t.index ["student_id"], name: "index_students_groups_on_student_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -68,5 +85,8 @@ ActiveRecord::Schema.define(version: 2020_06_30_142144) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "groups", "teachers"
+  add_foreign_key "students_groups", "groups"
+  add_foreign_key "students_groups", "students"
   add_foreign_key "teachers", "users"
 end
