@@ -9,6 +9,9 @@ require "open-uri"
 
 puts 'Cleaning the database...'
 User.destroy_all
+Teacher.destroy_all
+Student.destroy_all
+FlashcardSet.destroy_all
 
 puts 'Creating teachers...'
 10.times do
@@ -37,13 +40,20 @@ puts 'Creating teachers...'
     #     filename: "profilepic.png",
     #     content_type: 'image/png'
     #     )
-    5.times do
-      new_group = Group.new(
+    10.times do
+      new_flashcard_set = FlashcardSet.new(
+        name: Faker::Educator.subject,
         teacher: new_teacher,
-        class_name: "#{Faker::Educator.course_name}: #{rand(1..30)}"
         )
-      new_group.save
+      new_flashcard_set.save
       end
+    # 5.times do
+    #   new_group = Group.new(
+    #     teacher: new_teacher,
+    #     class_name: "#{Faker::Educator.course_name}: #{rand(1..30)}"
+    #     )
+    #   new_group.save
+    #   end
     end
 
 puts 'Creating Students...'
