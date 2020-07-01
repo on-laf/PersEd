@@ -1,9 +1,9 @@
 class StudentsGroupsController < ApplicationController
   def new
-     @student = Student.find(params[:student_id])
-     @students_group = StudentsGroup.new
-     authorize @students_group
-   end
+    @student = Student.find(params[:student_id])
+    @students_group = StudentsGroup.new
+    authorize @students_group
+  end
 
   def create
     @student = Student.find(params[:student_id])
@@ -18,8 +18,8 @@ class StudentsGroupsController < ApplicationController
   end
 
   def destroy
-    authorize @students_group
     @students_group = StudentsGroup.find(params[:id])
+    authorize @students_group
     @students_group.destroy
     redirect_to student_path(@students_group.student)
   end

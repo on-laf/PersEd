@@ -1,7 +1,11 @@
-<h1>FlashcardSets#edit</h1>
-  <p>Find me in app/views/flashcard_sets/edit.html.erb</p>
+<div class="container">
+  <h1>Edit the flashcard set's name</h1>
 
-    <%= simple_form_for @flashcard_set do |f| %>
-            <%= f.input :name %>
-            <%= f.button :submit, class: 'btn btn-primary' %>
-          <% end %>
+  <%= simple_form_for @flashcard_set do |f| %>
+    <%= f.input :name %>
+    <div>
+      <%= f.button :submit, class: 'btn btn-dark' %>
+      <%= link_to 'Cancel', flashcard_set_path(@flashcard_set), class: 'btn btn-outline-dark' %>
+    </div>
+  <% end %>
+</div>
