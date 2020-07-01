@@ -8,11 +8,9 @@
 require "open-uri"
 
 puts 'Cleaning the database...'
-Group.destroy_all
-Teacher.destroy_all
-Student.destroy_all
-User.destroy_all
 FlashcardSet.destroy_all
+User.destroy_all
+
 
 puts 'Creating subjects and topics...'
 subjects = ['Maths', 'Biology', 'Geology', 'Physics', 'Chemistry', 'English', 'French', 'German', 'Phylosophy', 'History', 'Geography', 'Economics', 'Sociology', 'Psychology']
@@ -73,7 +71,7 @@ puts 'Creating teachers...'
   #     )
 end
 
-puts 'Creating Students...'
+puts 'Creating students...'
 100.times do
   new_user = User.new(
     email: Faker::Internet.email,

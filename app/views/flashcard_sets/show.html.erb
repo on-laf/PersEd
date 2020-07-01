@@ -1,3 +1,9 @@
-<div class="container">
-  <h1><%= @flashcard_set.name %></h1>
+<div class="container my-5">
+  <h1>
+    <%= @flashcard_set.name %>
+    <%= link_to edit_flashcard_set_path(@flashcard_set) do %>
+      <i class="fas fa-pencil-alt text-dark"></i>
+    <% end %>
+  </h1>
+  <%= link_to 'Back', flashcard_sets_path, class: "btn btn-outline-dark" %>
 </div>

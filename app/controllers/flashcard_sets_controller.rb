@@ -3,6 +3,8 @@ class FlashcardSetsController < ApplicationController
 
   def index
     @flashcard_sets = policy_scope(FlashcardSet)
+    @flashcard_set = FlashcardSet.new
+    authorize @flashcard_set
   end
 
   def new
