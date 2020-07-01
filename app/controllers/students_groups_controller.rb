@@ -18,9 +18,9 @@ class StudentsGroupsController < ApplicationController
   end
 
   def destroy
+    authorize @students_group
     @students_group = StudentsGroup.find(params[:id])
     @students_group.destroy
-    authorize @students_group
     redirect_to student_path(@students_group.student)
   end
 

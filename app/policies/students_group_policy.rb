@@ -15,6 +15,6 @@ class StudentsGroupPolicy < ApplicationPolicy
 
 
   def destroy?
-    record.user == user
+    record.student.user == user
   end
 end
