@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 2020_07_01_134217) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "flashcard_sets", force: :cascade do |t|
+    t.string "name"
+    t.bigint "teacher_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["teacher_id"], name: "index_flashcard_sets_on_teacher_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -90,6 +98,7 @@ ActiveRecord::Schema.define(version: 2020_07_01_134217) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "flashcard_sets", "teachers"
   add_foreign_key "teacher_subjects", "subjects"
   add_foreign_key "teacher_subjects", "teachers"
   add_foreign_key "teachers", "users"
