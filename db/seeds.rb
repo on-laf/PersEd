@@ -8,6 +8,9 @@
 require "open-uri"
 
 puts 'Cleaning the database...'
+Group.destroy_all
+Teacher.destroy_all
+Student.destroy_all
 User.destroy_all
 FlashcardSet.destroy_all
 
@@ -19,6 +22,7 @@ subjects.each do |subject|
     new_topic = Topic.new(topic_name: Faker::Educator.subject)
   end
 end
+
 
 puts 'Creating teachers...'
 10.times do

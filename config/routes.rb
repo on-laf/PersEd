@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :students do
     resources :student_flashcard_set
     resources :student_flashcards
+    resources :students_groups
+
   end
   resources :topics
 end
