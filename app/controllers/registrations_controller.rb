@@ -1,10 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
-    super do |user|
-      if params[:user][:photo].nil?
-
-      end
-    end
+    super
     if params[:teacher]
       resource.create_teacher(first_name: params[:first_name], last_name: params[:last_name])
     else
