@@ -17,11 +17,7 @@ class TeacherSubjectPolicy < ApplicationPolicy
     true
   end
 
-  def update?
-    record.user == user
-  end
-
   def destroy?
-    record.user == user
+    record.teacher.user == user
   end
 end

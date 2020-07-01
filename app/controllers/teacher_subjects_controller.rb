@@ -1,19 +1,12 @@
 class TeacherSubjectsController < ApplicationController
   def create
+    @teacher = Teacher.find(params[:teacher_id])
+    authorize @teacher
     @teacher_subject = TeacherSubject.new(teacher_subject_params)
+    @teacher_subject.teacher = @teacher
     authorize @teacher_subject
     if @teacher_subject.save
-      redirect_to teacher_path(current_teacher)
-    else
-      render 'teachers/show'
-    end
-  end
-
-  def update
-    @teacher_subject = TeacherSubject.find(params[:id])
-    authorize @teacher_subject
-    if @teacher_subject.update(teacher_subject_params)
-      redirect_to teacher_path(current_teacher)
+      redirect_to teacher_path(@teacher)
     else
       render 'teachers/show'
     end

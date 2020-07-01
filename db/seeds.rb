@@ -49,13 +49,13 @@ puts 'Creating teachers...'
   #     content_type: 'image/png'
   #     )
 
-  5.times do
-    new_group = Group.new(
-      teacher: new_teacher,
-      class_name: "#{Faker::Educator.course_name}: #{rand(1..30)}"
-      )
-    new_group.save
-  end
+  # 5.times do
+  #   new_group = Group.new(
+  #     teacher: new_teacher,
+  #     class_name: "#{Faker::Educator.course_name}: #{rand(1..30)}"
+  #     )
+  #   new_group.save
+  # end
 end
 
 puts 'Creating Students...'
