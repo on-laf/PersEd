@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  helper_method :current_teacher, :current_student, :teacher?
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -27,5 +28,17 @@ class ApplicationController < ActionController::Base
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
+
+  def current_teacher
+    current_user&.teacher
+  end
+
+  def current_student
+    current_user&.student
+  end
+
+  def teacher?
+    current_teacher.present?
   end
 end

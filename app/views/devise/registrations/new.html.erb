@@ -4,9 +4,20 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= hidden_field_tag :teacher, params[:teacher] %>
+    <%= label_tag  :first_name, "First Name" %>
+    <%= text_field_tag :first_name,
+                        '',
+                        autofocus: true,
+                        required: true,
+                        input_html: { autocomplete: "first_name" }%>
+    <%= label_tag  :last_name, "Last Name" %>
+    <%= text_field_tag :last_name,
+                        '',
+                        required: true,
+                        input_html: { autocomplete: "last_name" }%>
     <%= f.input :email,
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "email" }%>
     <%= f.input :password,
                 required: true,
@@ -15,6 +26,7 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+
   </div>
 
   <div class="form-actions">
