@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :teacher, dependent: :destroy
   has_one :student, dependent: :destroy
+  has_one_attached :photo
+
+  def profile_photo?
+    photo.attached?
+  end
 end
