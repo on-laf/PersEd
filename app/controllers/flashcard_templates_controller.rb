@@ -45,8 +45,9 @@ class FlashcardTemplatesController < ApplicationController
 
   def destroy
     authorize @flashcard_template
+    @flashcard_set = FlashcardSet.find(params[:flashcard_set_id])
     @flashcard_template.destroy
-    redirect_to flashcard_templates_path
+    redirect_to flashcard_set_path(@flashcard_set)
   end
 
   private
