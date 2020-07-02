@@ -2,7 +2,8 @@
   overflow: hidden;
   height: 250px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  border-radius: 3px;
   align-items: center;
   padding: 16px;
 }
@@ -29,4 +30,8 @@
 
 .flashcard-sets-link {
   text-decoration: none !important;
+  color: black;
+  &:hover {
+    color: black;
+  }
 }

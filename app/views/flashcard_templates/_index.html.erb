@@ -1,17 +1,14 @@
 <div class="container">
+  <div class="flashcard_templates_card my-5">
+    <h2>Create a new flashcard</h2>
+      <%= simple_form_for [flashcard_set, flashcard_template] do |f| %>
+        <%= f.association :topic, label: "Topic:", collection: @topics, label_method: :topic_name %>
+        <%= f.input :question, label: "Question:" %>
+        <%= f.input :answer, label: "Answer:" %>
+        <%= f.submit 'Create new flashcard', class: 'btn btn-outline-dark' %>
+      <% end %>
+    </div>
   <div class="row">
-    <div class="col-12 col-md-6 col-lg-4">
-      <div class="flashcard_templates_card my-5">
-        <h2>Create a new flashcard template</h2>
-          <%= simple_form_for [flashcard_set, flashcard_template] do |f| %>
-            <%= f.association :topic, label: "Topic:", collection: @topics, label_method: :topic_name %>
-            <%= f.input :question, label: "Question:" %>
-            <%= f.input :answer, label: "Answer:" %>
-            <%= f.submit 'Create new flashcard template', class: 'btn btn-outline-dark' %>
-          <% end %>
-        </div>
-      </div>
-
     <% flashcard_templates.each do |fs| %>
       <div class="col-12 col-md-6 col-lg-4">
         <%= link_to "#", class: "flashcard-templates-link" do %>
@@ -19,7 +16,6 @@
             <div class="flashcard_templates_card_infos">
               <h2><%= fs.question %></h2>
               <h3><%= fs.answer %></h3>
-              <!-- number of flashcards in this template -->
             </div>
           </div>
         <% end %>
