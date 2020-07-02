@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="flashcard_sets_card my-5">
+        <h2>Create a new flasgcard_template</h2>
+        <%= simple_form_for @flashcard_set do |f| %>
+          <%= f.input :name, label: "What's this new flasgcard_template about?" %>
+          <%= f.input :name, label: "What's this new flasgcard_template about?" %>
+
+          <%= f.submit 'Create new flasgcard_template', class: 'btn btn-outline-dark' %>
+        <% end %>
+      </div>
+    </div>
+
+    <% @flashcard_sets.each do |fs| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <%= link_to flashcard_set_path(fs), class: "flashcard-sets-link" do %>
+          <div class="flashcard_sets_card flashcard-sets-card-grow my-5">
+            <div class="flashcard_sets_card_infos">
+              <h2><%= fs.name %></h2>
+              <!-- number of flashcards in this set -->
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

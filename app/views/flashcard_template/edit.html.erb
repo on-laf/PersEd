@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Edit the flashcard template's name</h1>
+
+  <%= simple_form_for @flashcard_template do |f| %>
+    <%= f.input :name %>
+    <div>
+      <%= f.button :submit, class: 'btn btn-dark' %>
+      <%= link_to 'Cancel', flashcard_template_path(@flashcard_template), class: 'btn btn-outline-dark' %>
+    </div>
+  <% end %>
+</div>
