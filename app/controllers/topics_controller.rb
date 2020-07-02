@@ -3,6 +3,9 @@ class TopicsController < ApplicationController
 
   def index
     @topics = policy_scope(Topic)
+    @topic = Topic.new
+    authorize @topic
+    @subjects = current_teacher.subjects
   end
 
   def show
@@ -11,15 +14,17 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
+    authorize @topic
   end
 
   def create
     @topic = Topic.new(topic_params)
     authorize @topic
+    @subjects = current_teacher.subjects
     if @topic.save
       redirect_to topics_path
     else
-      render :new
+      render :index
     end
   end
 
@@ -35,7 +40,7 @@ class TopicsController < ApplicationController
   def destroy
     authorize @topic
     @topic.destroy
-    redirect_to teacher_path(current_teacher)
+    redirect_to topics_path
   end
 
   private
