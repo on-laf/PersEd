@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_082920) do
+ActiveRecord::Schema.define(version: 2020_07_02_123952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 2020_07_02_082920) do
   end
 
   create_table "flashcard_templates", force: :cascade do |t|
-    t.string "question"
-    t.string "answer"
+    t.text "question"
+    t.text "answer"
     t.bigint "teacher_id", null: false
     t.bigint "flashcard_set_id", null: false
     t.bigint "topic_id", null: false
