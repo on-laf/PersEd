@@ -5,5 +5,11 @@
       <i class="fas fa-pencil-alt text-dark"></i>
     <% end %>
   </h1>
+  <%= render "flashcard_templates/index",
+    topics: @topics,
+    topic: @topic,
+    flashcard_set: @flashcard_set,
+    flashcard_template: @flashcard_template,
+    flashcard_templates: @flashcard_templates %>
   <%= link_to 'Back', flashcard_sets_path, class: "btn btn-outline-dark" %>
 </div>
