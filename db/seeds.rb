@@ -10,19 +10,22 @@ require "open-uri"
 puts 'Cleaning the database...'
 FlashcardTemplate.destroy_all
 FlashcardSet.destroy_all
+Teacher.destroy_all
+Topic.destroy_all
+Subject.destroy_all
 User.destroy_all
 
 # this might need cleaning up as we will have repetition of topics
 puts 'Creating subjects and topics...'
 subjects = ['Maths', 'Biology', 'Physics', 'Chemistry', 'English', 'French', 'German', 'Philosophy', 'History', 'Geography', 'Economics', 'Sociology', 'Psychology']
-topics = []
 subjects.each do |subject|
   new_subject = Subject.create(subject_name: subject)
-  3.times do
-    new_topic = Topic.new(topic_name: Faker::Educator.subject, subject: new_subject)
-    new_topic.save
-    topics << new_topic
-  end
+end
+topics = []
+15.times do
+  new_topic = Topic.new(topic_name: Faker::Educator.unique.subject, subject: Subject.find_by(subject_name: 'Economics'))
+  new_topic.save
+  topics << new_topic
 end
 
 
