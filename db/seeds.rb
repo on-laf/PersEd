@@ -8,17 +8,24 @@
 require "open-uri"
 
 puts 'Cleaning the database...'
+FlashcardTemplate.destroy_all
 FlashcardSet.destroy_all
+Teacher.destroy_all
+Topic.destroy_all
+Subject.destroy_all
 User.destroy_all
 
-
+# this might need cleaning up as we will have repetition of topics
 puts 'Creating subjects and topics...'
-subjects = ['Maths', 'Biology', 'Geology', 'Physics', 'Chemistry', 'English', 'French', 'German', 'Phylosophy', 'History', 'Geography', 'Economics', 'Sociology', 'Psychology']
+subjects = ['Maths', 'Biology', 'Physics', 'Chemistry', 'English', 'French', 'German', 'Philosophy', 'History', 'Geography', 'Economics', 'Sociology', 'Psychology']
 subjects.each do |subject|
   new_subject = Subject.create(subject_name: subject)
-  10.times do
-    new_topic = Topic.new(topic_name: Faker::Educator.subject)
-  end
+end
+topics = []
+15.times do
+  new_topic = Topic.new(topic_name: Faker::Educator.unique.subject, subject: Subject.find_by(subject_name: 'Economics'))
+  new_topic.save
+  topics << new_topic
 end
 
 
@@ -46,16 +53,26 @@ puts 'Creating teachers...'
 
  10.times do
    new_flashcard_set = FlashcardSet.new(
-     name: Faker::Educator.subject,
+     name: Faker::Educator.course_name,
      teacher: new_teacher,
      )
    new_flashcard_set.save
- end
+   10.times do
+      new_flashcard_template = FlashcardTemplate.new(
+        question: "#{Faker::Quotes::Shakespeare.hamlet}?",
+        answer: Faker::TvShows::BojackHorseman.quote,
+        flashcard_set: new_flashcard_set,
+        teacher: new_teacher,
+        topic: topics[rand(0...topics.count)]
+        )
+      new_flashcard_template.save
+      end
+    end
 
   5.times do
     new_group = Group.new(
       teacher: new_teacher,
-      class_name: "#{Faker::Educator.course_name}: #{rand(1..30)}"
+      class_name: "#{new_teacher.last_name}: #{rand(1..30)}"
       )
     new_group.save
   end
