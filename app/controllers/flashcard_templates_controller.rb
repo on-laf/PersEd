@@ -10,15 +10,15 @@ class FlashcardTemplatesController < ApplicationController
   def new
     @flashcard_template = FlashcardTemplate.new
     authorize @flashcard_template
-    @topics = Topic.all.plug
+    @topics = Topic.all
   end
 
   def create
     @flashcard_template = FlashcardTemplate.new(flashcard_template_params)
     @flashcard_template.teacher = current_teacher
-    authorize @flashcard_template
     @flashcard_set = FlashcardSet.find(params[:flashcard_set_id])
     @flashcard_template.flashcard_set = @flashcard_set
+    authorize @flashcard_template
     if @flashcard_template.save
       redirect_to flashcard_set_path(@flashcard_set)
     else
