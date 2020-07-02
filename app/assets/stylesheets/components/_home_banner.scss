@@ -1,23 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Roboto:wght@300&display=swap');
+
 .banner {
   background-size: cover;
   height: 85vh;
   background-position: center;
   padding: 150px 0;
-  font-family: Montserrat;
+  display: flex;
+  flex-direction: column;
+
+
+  .text-left {
+    h1 {
+    color: white;
+    }
+    h3 {
+    color: white;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+
+    }
+  }
+  .text-right {
+    h1 {
+    color: black;
+    }
+    h3 {
+    color: #D86767;
+    text-shadow: 0.6px 0.6px 6px rgba(0,0,0,0.2);
+
+    }
+  }
+}
+
+
+.padding-kill {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .banner h1 {
   margin: 0;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+  font-size: 150px;
+  font-weight: bold(0.4);
+  font-family: 'Lora', serif;
 }
 
-.banner p {
-  font-size: 20px;
+
+.banner h3 {
+  font-size: 32px;
   color: white;
-  opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 3px 3px 3px rgba(0,0,0,0.6);
+  font-family: 'Roboto', sans-serif;
 }
+
+
+.banner p {
+  font-size: 150px;
+  color: white;
+  text-shadow: 0.1px 0.1px 0.1px rgba(0,0,0,0.2);
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+.customized-button-tchr {
+text-align: center;
+background-color: white;
+border-radius: 6px;
+width: 210px;
+}
+.customized-button-std{
+text-align: center;
+background-color: #D86767;
+border-radius: 6px;
+width: 210px;
+}
+.centered-btn {
+  align-items: center;
+  align-content: center;
+  margin: 0 auto;
+  margin-top:150px;
+}
+
 
