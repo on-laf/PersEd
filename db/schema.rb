@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_01_135907) do
+ActiveRecord::Schema.define(version: 2020_07_02_082920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(version: 2020_07_01_135907) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["teacher_id"], name: "index_flashcard_sets_on_teacher_id"
+  end
+
+  create_table "flashcard_templates", force: :cascade do |t|
+    t.string "question"
+    t.string "answer"
+    t.bigint "teacher_id", null: false
+    t.bigint "flashcard_set_id", null: false
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["flashcard_set_id"], name: "index_flashcard_templates_on_flashcard_set_id"
+    t.index ["teacher_id"], name: "index_flashcard_templates_on_teacher_id"
+    t.index ["topic_id"], name: "index_flashcard_templates_on_topic_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -116,6 +129,9 @@ ActiveRecord::Schema.define(version: 2020_07_01_135907) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "flashcard_sets", "teachers"
+  add_foreign_key "flashcard_templates", "flashcard_sets"
+  add_foreign_key "flashcard_templates", "teachers"
+  add_foreign_key "flashcard_templates", "topics"
   add_foreign_key "groups", "teachers"
   add_foreign_key "students_groups", "groups"
   add_foreign_key "students_groups", "students"

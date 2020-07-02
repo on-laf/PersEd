@@ -25,6 +25,10 @@ class FlashcardSetsController < ApplicationController
 
   def show
     authorize @flashcard_set
+    @flashcard_templates = policy_scope(FlashcardTemplate)
+    @flashcard_template = FlashcardTemplate.new
+    authorize @flashcard_template
+    @topics = policy_scope(Topic)
   end
 
   def edit
