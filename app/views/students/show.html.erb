@@ -18,7 +18,7 @@
     <% @student.groups.each do |group| %>
       <p>
         <%= group.class_name %>
-        <%= link_to student_students_group_path(@student, @students_groups),
+        <%= link_to student_students_group_path(@student, @students_groups.find_by(group: group)),
             method: :delete,
             data: { confirm: "Are you sure you want to leave this class?" } do %>
             <i class="fas fa-sign-out-alt"></i>

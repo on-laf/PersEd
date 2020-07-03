@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to group_path(@group)
+      redirect_to groups_path
     else
       render :edit
     end
@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    redirec_to groups_path
+    redirect_to groups_path
   end
 
   private

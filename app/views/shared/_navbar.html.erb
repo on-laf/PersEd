@@ -11,26 +11,40 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Classes", groups_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to "Topics", topics_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to "Flashcards", flashcard_sets_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item dropdown">
-          <% if current_user.profile_photo? %>
-            <%= cl_image_tag current_user.photo.key, height: 40, width: 40, crop: :thumb, gravity: :face, class: "avatar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <% else %>
-            <%= icon('fas', 'user-circle', id: 'navbarDropdown', class: 'avatar avatar-icon', data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
-          <% end %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "My Profile", teacher? ? teacher_path(current_teacher) : student_path(current_student), class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
+        <% if teacher? %>
+          <li class="nav-item active">
+            <%= link_to "Classes", groups_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "Topics", topics_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "Flashcards", flashcard_sets_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item dropdown">
+            <% if current_user.profile_photo? %>
+              <%= cl_image_tag current_user.photo.key, height: 40, width: 40, crop: :thumb, gravity: :face, class: "avatar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% else %>
+              <%= icon('fas', 'user-circle', id: 'navbarDropdown', class: 'avatar avatar-icon', data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+            <% end %>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <%= link_to "My Profile", teacher_path(current_teacher), class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item dropdown">
+            <% if current_user.profile_photo? %>
+              <%= cl_image_tag current_user.photo.key, height: 40, width: 40, crop: :thumb, gravity: :face, class: "avatar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% else %>
+              <%= icon('fas', 'user-circle', id: 'navbarDropdown', class: 'avatar avatar-icon', data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+            <% end %>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <%= link_to "My Profile", student_path(current_student), class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% end %>
       <% else %>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
