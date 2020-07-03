@@ -3,13 +3,15 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    authorize @group
   end
 
   def create
     @group = Group.new(group_params)
+    @group.teacher = current_teacher
     authorize @group
     if @group.save
-      redirec_to groups_path
+      redirect_to groups_path
     else
       render :new
     end
@@ -17,6 +19,8 @@ class GroupsController < ApplicationController
 
   def index
     @groups = policy_scope(Group)
+    @group = Group.new
+    authorize @group
   end
 
   def show; end
@@ -25,7 +29,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirec_to group_path(@group)
+      redirect_to group_path(@group)
     else
       render :edit
     end

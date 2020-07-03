@@ -1,8 +1,24 @@
 <div class="container">
-  <% @groups.each do |group| %>
-    <h1><%= group.class_name %></h1>
-    <% group.students.each do |student| %>
-      <p></p>
+  <div class="my-3">
+    <h1>Create a new Class</h1>
+    <%= simple_form_for @group do |f| %>
+      <%= f.input :class_name %>
+      <%= f.submit 'Create new class', class: "btn btn-outline-dark mb-3" %>
     <% end %>
+  </div>
+
+  <% @groups.each do |group| %>
+    <div class="my-3">
+      <h1><%= group.class_name %></h1>
+      <h6><%= pluralize group.students.size, 'Student' %></h6>
+      <%= link_to edit_group_path(group), class: "icon-link" do %>
+        <i class="fas fa-pencil-alt text-dark"></i>
+      <% end %>
+      <%= link_to flashcard_set_path(@flashcard_set),
+          method: :delete,
+          data: { confirm: "Are you sure you want to delete this set?" } do %>
+          <i class="fas fa-trash-alt text-dark"></i>
+      <% end %>
+    </div>
   <% end %>
 </div>

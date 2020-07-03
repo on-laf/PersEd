@@ -27,6 +27,6 @@ class StudentsGroupsController < ApplicationController
   private
 
   def students_group_params
-    params.require(:students_group).permit(:group_id)
+    params.require(:students_group).permit(:group_id, :student_id)
   end
 end
