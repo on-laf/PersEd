@@ -41,4 +41,12 @@ class ApplicationController < ActionController::Base
   def teacher?
     current_teacher.present?
   end
+
+  def after_sign_in_path_for(resource)
+    if resource.student.present?
+      student_path(resource.student)
+    else
+      teacher_path(resource.teacher)
+    end
+  end
 end
