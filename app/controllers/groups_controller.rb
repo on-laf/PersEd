@@ -9,8 +9,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     authorize @group
     if @group.save
-      # think about this
-      redirec_to teacher_path(current_teacher)
+      redirec_to groups_path
     else
       render :new
     end
@@ -24,6 +23,18 @@ class GroupsController < ApplicationController
 
   def edit; end
 
+  def update
+    if @group.update(group_params)
+      redirec_to group_path(@group)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @group.destroy
+    redirec_to groups_path
+  end
 
   private
 
