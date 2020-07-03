@@ -1,25 +1,29 @@
 <div class="container">
+  <div class="flashcard_templates_card my-3">
+    <h2>Create a new flashcard</h2>
+      <%= simple_form_for [flashcard_set, flashcard_template] do |f| %>
+        <%= f.association :topic, label: "Topic:", collection: @topics, label_method: :topic_name %>
+        <%= f.input :question, label: "Question:", input_html: {style: 'height:2.5em;'} %>
+        <%= f.input :answer, label: "Answer:", input_html: {style: 'height:2.5em;'} %>
+        <%= f.submit 'Create new flashcard', class: 'btn btn-outline-dark' %>
+      <% end %>
+    </div>
   <div class="row">
-    <div class="col-12 col-md-6 col-lg-4">
-      <div class="flashcard_templates_card my-5">
-        <h2>Create a new flashcard template</h2>
-          <%= simple_form_for [flashcard_set, flashcard_template] do |f| %>
-            <%= f.association :topic, label: "Topic:", collection: @topics, label_method: :topic_name %>
-            <%= f.input :question, label: "Question:" %>
-            <%= f.input :answer, label: "Answer:" %>
-            <%= f.submit 'Create new flashcard template', class: 'btn btn-outline-dark' %>
-          <% end %>
-        </div>
-      </div>
-
     <% flashcard_templates.each do |fs| %>
       <div class="col-12 col-md-6 col-lg-4">
-        <%= link_to "#", class: "flashcard-templates-link" do %>
-          <div class="flashcard_templates_card flashcard-templates-card-grow my-5">
+        <%= link_to "#", class: "flashcard-link" do %>
+          <div class="card flashcard_templates_card flashcard-templates-card-grow my-5">
             <div class="flashcard_templates_card_infos">
-              <h2><%= fs.question %></h2>
-              <h3><%= fs.answer %></h3>
-              <!-- number of flashcards in this template -->
+              <p><strong><%= fs.question %></strong></p>
+              <p><%= fs.answer %></p>
+              <%= link_to edit_flashcard_set_flashcard_template_path(flashcard_set, fs), class: "icon-link" do %>
+                <i class="fas fa-pencil-alt text-dark"></i>
+              <% end %>
+              <%= link_to flashcard_set_flashcard_template_path(flashcard_set, fs),
+                  method: :delete,
+                  data: { confirm: "Are you sure you want to delete this flashcard?" } do %>
+                  <i class="fas fa-trash-alt text-dark"></i>
+              <% end %>
             </div>
           </div>
         <% end %>

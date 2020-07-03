@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-12 col-md-6 col-lg-4">
-      <div class="flashcard_sets_card my-5">
+      <div class="card flashcard_sets_card my-3">
         <h2>Create a new flashcard set</h2>
         <%= simple_form_for @flashcard_set do |f| %>
           <%= f.input :name, label: "What's this new flashcard set about?" %>
@@ -12,10 +12,11 @@
 
     <% @flashcard_sets.each do |fs| %>
       <div class="col-12 col-md-6 col-lg-4">
-        <%= link_to flashcard_set_path(fs), class: "flashcard-sets-link" do %>
-          <div class="flashcard_sets_card flashcard-sets-card-grow my-5">
+        <%= link_to flashcard_set_path(fs), class: "flashcard-link" do %>
+          <div class="card flashcard_sets_card flashcard-sets-card-grow my-3">
             <div class="flashcard_sets_card_infos">
               <h2><%= fs.name %></h2>
+              <p><%= pluralize fs.flashcard_templates.size, 'flashcard' %></p>
               <!-- number of flashcards in this set -->
             </div>
           </div>
