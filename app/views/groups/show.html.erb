@@ -2,6 +2,20 @@
 <div class="container">
   <h1><%= @group.class_name %></h1>
   <% @group.students.each do |student| %>
-    <p><%= student.first_name %> <%= student.last_name %></p>
+    <div class="card card-horizontal my-3">
+      <div class="card-horizontal-parcel">
+        <% if student.user.profile_photo? %>
+          <%= cl_image_tag student.user.photo.key, height: 40, width: 40, crop: :thumb, gravity: :face, class: "avatar" %>
+        <% else %>
+          <%= icon('fas', 'user-circle', class: 'avatar avatar-icon') %>
+        <% end %>
+      </div>
+      <div class="card-horizontal-parcel card-horizontal-center">
+        <p><%= student.first_name %> <%= student.last_name %></p>
+      </div>
+      <div class="card-horizontal-parcel">
+        <%= link_to 'See progress', "#", class: "btn btn-outline-dark" %>
+      </div>
+    </div>
   <% end %>
 </div>
