@@ -49,5 +49,9 @@ class ApplicationPolicy
     def current_teacher
       user&.teacher
     end
+
+    def current_student
+      user&.student
+    end
   end
 end

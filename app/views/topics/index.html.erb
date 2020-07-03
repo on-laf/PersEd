@@ -3,7 +3,7 @@
     <div class="my-5">
       <h1><%= subject.subject_name %></h1>
       <%= simple_form_for @topic do |f| %>
-        <%= f.input :topic_name %>
+        <%= f.input :topic_name, label: "New topic's name" %>
         <%= f.input :subject_id, as: :hidden, input_html: { :value => subject.id } %>
         <%= f.submit 'Create new topic', class: "btn btn-outline-dark mb-3" %>
       <% end %>
@@ -14,7 +14,7 @@
             method: :delete,
             data: { confirm: "Are you sure?" } do %>
             <i class="fas fa-trash-alt"></i>
-        <% end %>
+          <% end %>
         </p>
       <% end %>
     </div>

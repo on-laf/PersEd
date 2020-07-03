@@ -1,0 +1,12 @@
+<div class="container my-5">
+  <h1>Edit the class' name</h1>
+
+  <%= simple_form_for @group do |f| %>
+    <%= f.input :class_name %>
+    <div>
+      <%= f.submit 'Update class', class: 'btn btn-dark' %>
+      <%= link_to 'Cancel', groups_path, class: 'btn btn-outline-dark' %>
+    </div>
+  <% end %>
+</div>
+

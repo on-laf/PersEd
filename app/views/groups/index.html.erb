@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="my-5">
+    <h1>Create a new Class</h1>
+    <%= simple_form_for @group do |f| %>
+      <%= f.input :class_name %>
+      <%= f.submit 'Create new class', class: "btn btn-outline-dark mb-3" %>
+    <% end %>
+  </div>
+
+  <% @groups.each do |group| %>
+    <div class="mb-5">
+      <h1>
+        <%= link_to group_path(group), class: "link text-link" do %>
+          <%= group.class_name %>
+        <% end %>
+        <%= link_to edit_group_path(group), class: "icon-link" do %>
+          <i class="fas fa-pencil-alt text-dark"></i>
+        <% end %>
+        <%= link_to group_path(group),
+            method: :delete,
+            data: { confirm: "Are you sure you want to delete this class?" } do %>
+            <i class="fas fa-trash-alt text-dark"></i>
+        <% end %>
+      </h1>
+      <p><%= pluralize group.students.size, 'Student' %></p>
+    </div>
+  <% end %>
+</div>
