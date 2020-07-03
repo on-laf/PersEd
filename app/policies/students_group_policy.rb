@@ -9,10 +9,13 @@ class StudentsGroupPolicy < ApplicationPolicy
     true
   end
 
-  def create?
+  def show?
     true
   end
 
+  def create?
+    true
+  end
 
   def destroy?
     record.student.user == user
