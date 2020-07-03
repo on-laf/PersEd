@@ -37,3 +37,23 @@
     color: black;
   }
 }
+
+.card-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 600px;
+}
+
+.card-horizontal-parcel {
+  margin-right: 20px;
+  p {
+    margin: 0;
+  }
+}
+
+.card-horizontal-center {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
