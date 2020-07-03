@@ -1,0 +1,8 @@
+<div class="container">
+  <% @groups.each do |group| %>
+    <h1><%= group.class_name %></h1>
+    <% group.students.each do |student| %>
+      <p></p>
+    <% end %>
+  <% end %>
+</div>
