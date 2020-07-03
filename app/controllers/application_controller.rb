@@ -41,4 +41,20 @@ class ApplicationController < ActionController::Base
   def teacher?
     current_teacher.present?
   end
+
+  def after_sign_in_path_for(user)
+     if params[:teacher] == 'true'
+      resource.create_teacher(first_name: params[:first_name], last_name: params[:last_name])
+      raise
+    else
+      resource.create_student(first_name: params[:first_name], last_name: params[:last_name])
+      raise
+    end
+        if params[:teacher] == 'true'
+      resource.create_teacher(first_name: params[:first_name], last_name: params[:last_name])
+          teacher_path(user.teacher)
+        else
+          student_path(user.student)
+        end
+  end
 end
