@@ -10,7 +10,9 @@
   <% @groups.each do |group| %>
     <div class="mb-5">
       <h1>
-        <%= group.class_name %>
+        <%= link_to group_path(group), class: "link text-link" do %>
+          <%= group.class_name %>
+        <% end %>
         <%= link_to edit_group_path(group), class: "icon-link" do %>
           <i class="fas fa-pencil-alt text-dark"></i>
         <% end %>

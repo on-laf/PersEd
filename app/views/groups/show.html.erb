@@ -1,0 +1,7 @@
+<%= link_to 'Back', groups_path, class: "btn btn-outline-dark m-2" %>
+<div class="container">
+  <h1><%= @group.class_name %></h1>
+  <% @group.students.each do |student| %>
+    <p><%= student.first_name %> <%= student.last_name %></p>
+  <% end %>
+</div>
