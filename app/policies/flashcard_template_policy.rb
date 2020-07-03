@@ -2,7 +2,7 @@ class FlashcardTemplatePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       # scope.where('user.teacher.subjects' => { subject: flashcard_template.topic.subject })
-      scope.all
+      scope.where(teacher: current_teacher)
     end
   end
 

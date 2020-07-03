@@ -2,7 +2,8 @@ class FlashcardTemplatesController < ApplicationController
   before_action :find_flashcard_template, only: [:show, :edit, :update, :destroy]
 
   def index
-    @flashcard_templates = policy_scope(FlashcardTemplate)
+    @flashcard_set = FlashcardSet.find(params[:flashcard_set_id])
+    @flashcard_templates = policy_scope(FlashcardTemplate.where(flashcard_set: @flashcard_set))
     @flashcard_template = FlashcardTemplate.new
     authorize @flashcard_template
   end
@@ -45,8 +46,9 @@ class FlashcardTemplatesController < ApplicationController
 
   def destroy
     authorize @flashcard_template
+    @flashcard_set = FlashcardSet.find(params[:flashcard_set_id])
     @flashcard_template.destroy
-    redirect_to flashcard_templates_path
+    redirect_to flashcard_set_path(@flashcard_set)
   end
 
   private
