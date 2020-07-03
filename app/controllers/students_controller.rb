@@ -7,6 +7,10 @@ class StudentsController < ApplicationController
 
   def show
     authorize @student
+    @students_groups = StudentsGroup.where(student: @student)
+    authorize @students_groups
+    @students_group = StudentsGroup.new
+    authorize @students_group
   end
 
   def new
