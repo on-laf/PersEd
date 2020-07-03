@@ -80,33 +80,36 @@
   text-align: center;
   background-color: white;
   border-radius: 6px;
-  width: 150px;
+  width: 220px;
   font-family:Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 16px;
   display: flex-center;
   align-items: center;
   text-align: center;
   letter-spacing: 0.02em;
+  padding: 10px;
 }
 
 .customized-button-std{
   text-align: center;
   background-color: #D86767;
   border-radius: 6px;
-  width: 150px;
+  width: 220px;
   font-family: Roboto;
   font-style: normal;
   font-weight: 15px;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 16px;
+  line-height: 14px;
   display: flex-center ;
   align-items: center;
   text-align: center;
   letter-spacing: 0.02em;
+  padding: 10px;
 }
+
 .centered-btn {
   align-items: center;
   align-content: center;
@@ -121,13 +124,21 @@
   h1 {
     color: black;
     margin-top: 75px;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    font-family:Roboto;
+
       }
   h3 {
     color: #D86767;
-    text-shadow: 0.6px 0.6px 6px rgba(0,0,0,0.3);
-    margin-top: px;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0.6);
+    font-family:Roboto;
 
+  }
+  h4{
+      font-family:Roboto;
+  }
+  p{
+      font-family:Roboto;
   }
 }
 
