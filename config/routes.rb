@@ -18,5 +18,7 @@ Rails.application.routes.draw do
     resources :students_groups
 
   end
-  resources :topics
+  resources :topics do
+    resources :quiz_questions
+  end
 end
