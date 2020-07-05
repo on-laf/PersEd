@@ -1,0 +1,28 @@
+<%= link_to 'Back', topic_quiz_questions_path, class: "btn btn-outline-dark m-2" %>
+<div class="container mt-3">
+  <div class="quiz-question-card">
+    <h1>
+      <div class="card quiz-question-card quiz-question-card-grow my-3">
+        <h2>Q: <%= @quiz_question.question %></h2>
+        <div class="d-flex justify-content-between"><p>A:<%= q.A %></p><p><%= @quiz_question.correct_answer == 1 ? "checkedbox" : "box" %></p></div>
+        <div class="d-flex justify-content-between"><p>B:<%= q.B %></p><p><%= @quiz_question.correct_answer == 2 ? "checkedbox" : "box" %></p></div>
+        <div class="d-flex justify-content-between"><p>C:<%= q.C %></p><p><%= @quiz_question.correct_answer == 3 ? "checkedbox" : "box" %></p></div>
+        <div class="d-flex justify-content-between"><p>D:<%= q.D %></p><p><%= @yquiz_question.correct_answer == 4 ? "checkedbox" : "box" %></p></div>
+      </div>
+      <%= link_to edit_topic_quiz_question_path(@quiz_question), class: "icon-link" do %>
+        <i class="fas fa-pencil-alt text-dark"></i>
+      <% end %>
+      <%= link_to topic_quiz_question_path(@quiz_question),
+          method: :delete,
+          data: { confirm: "Are you sure you want to delete this question?" } do %>
+          <i class="fas fa-trash-alt text-dark"></i>
+      <% end %>
+    </h1>
+    <%= link_to topic_quiz_questions_path,
+      topics: @topics,
+      topic: @topic,
+      quiz_question: @quiz_question,
+      quiz_question: @quiz_question,
+      quiz_questions: @quiz_questions %>
+  </div>
+</div>

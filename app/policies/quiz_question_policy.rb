@@ -2,15 +2,17 @@ class QuizQuestionPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
-      # scope.where(teacher: current_teacher)
+      # scope.where(user.teacher == current_teacher)
     end
   end
 
   def index?
+    # returns all quiz questions need to change scope to topic ids.
     true
   end
 
   def show?
+    # where quizcard_question = id
     true
   end
 
@@ -18,11 +20,14 @@ class QuizQuestionPolicy < ApplicationPolicy
     true
   end
 
+# need to look at scope. do we stop allowing updates? or make every question belong to a teacher?
   def update?
-    record.teacher == user.teacher
+    true
+    # record.teacher == user.teacher
   end
 
   def destroy?
-    record.teacher == user.teacher
+    true
+    # record.teacher == user.teacher
   end
 end

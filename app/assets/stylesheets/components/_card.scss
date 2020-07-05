@@ -6,15 +6,6 @@
   overflow: hidden;
 }
 
-.card-q {
-  background: white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
-  border-radius: 3px;
-  padding: 16px;
-  margin: 10px;
-  overflow: hidden;
-}
-
 .flashcard_sets_card {
   height: 250px;
 }
@@ -40,6 +31,47 @@
 }
 
 .flashcard-link {
+  text-decoration: none !important;
+  color: black;
+  &:hover {
+    color: black;
+  }
+}
+
+.quiz-question-card {
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  padding: 16px;
+  margin: 10px;
+  overflow: hidden;
+}
+
+.quiz-question-card h3 {
+  font-size: 18px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+  font-weight: bold;
+
+}
+
+.quiz-question-card p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.quiz-question-card-grow {
+  transition: all .2s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+.quiz-question-link {
   text-decoration: none !important;
   color: black;
   &:hover {

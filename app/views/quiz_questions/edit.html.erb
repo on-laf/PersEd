@@ -1,0 +1,12 @@
+<h3>Edit a quiz question</h3>
+  <%= simple_form_for [@topic, @quiz_question] do |f| %>
+  <%= f.input :question, label: "Question:" %>
+  <%= f.input :A, label: "Answer A:" %>
+  <%= f.input :B, label: "Answer B:" %>
+  <%= f.input :C, label: "Answer C:" %>
+  <%= f.input :D, label: "Answer D:" %>
+  <%= f.input :correct_answer, label: "Correct Answer" %>
+<!-- this is a workaround that puts the value of topic_id into my object. CHANGE! -->
+  <%= f.input :topic_id, input_html: {value: params[:topic_id]}  %>
+  <%= f.submit "Create Question", class: "btn btn-primary" %>
+<% end %>

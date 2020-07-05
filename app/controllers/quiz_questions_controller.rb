@@ -8,6 +8,7 @@ class QuizQuestionsController < ApplicationController
 
   def show
     authorize @quiz_question
+    @quiz_question = policy_scope(QuizQuestion)
   end
 
   def new
@@ -27,13 +28,14 @@ class QuizQuestionsController < ApplicationController
   end
 
   def edit
+    @topic = Topic.find(params[:topic_id])
     authorize @quiz_question
   end
 
   def update
     authorize @quiz_question
     if @quiz_question.update(quiz_question_params)
-      redirect_to quiz_questions_path
+      redirect_to topic_quiz_questions_path
     else
       render :edit
     end
@@ -42,7 +44,7 @@ class QuizQuestionsController < ApplicationController
   def destroy
     authorize @quiz_question
     @quiz_question.destroy
-    redirect to quiz_questions_path
+    redirect to index_topic_quiz_questions_path
   end
 
   private
