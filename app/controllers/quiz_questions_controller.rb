@@ -3,7 +3,7 @@ class QuizQuestionsController < ApplicationController
 
   def index
     @quiz_questions = policy_scope(QuizQuestion)
-    authorize @quiz_question
+    authorize @quiz_questions
   end
 
   def show
@@ -11,6 +11,7 @@ class QuizQuestionsController < ApplicationController
   end
 
   def new
+    @topic = Topic.find(params[:topic_id])
     @quiz_question = QuizQuestion.new
     authorize @quiz_question
   end
@@ -18,10 +19,10 @@ class QuizQuestionsController < ApplicationController
   def create
     @quiz_question = QuizQuestion.new(quiz_question_params)
     authorize @quiz_question
-    if @flashcard_template.save
-      redirect_to quiz_questions_path
+    if @quiz_question.save
+      redirect_to topic_quiz_questions_path
     else
-      render :new
+      render "topics/show"
     end
   end
 
@@ -31,8 +32,8 @@ class QuizQuestionsController < ApplicationController
 
   def update
     authorize @quiz_question
-    if @topic.update(topic_params)
-      redirect_to topics_path
+    if @quiz_question.update(quiz_question_params)
+      redirect_to quiz_questions_path
     else
       render :edit
     end
@@ -51,6 +52,7 @@ class QuizQuestionsController < ApplicationController
   end
 
   def quiz_question_params
-    params.require(:quiz_question).permit(:quesion, :correct_answer, :A, :B, :C, :D, :topic_id)
+    # is passing in the topic_id as a string
+    params.require(:quiz_question).permit(:question, :correct_answer, :A, :B, :C, :D, :topic_id)
   end
 end

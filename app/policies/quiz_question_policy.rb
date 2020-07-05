@@ -1,7 +1,8 @@
 class QuizQuestionPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(teacher: current_teacher)
+      scope.all
+      # scope.where(teacher: current_teacher)
     end
   end
 
