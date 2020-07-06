@@ -3,15 +3,14 @@ class StudentFlashcardsController < ApplicationController
 
   def index
     @student_flashcard_set = StudentFlashcardSet.find(params[:student_flashcard_set_id])
+    authorize @student_flashcard_set
     @student_flashcards = policy_scope(StudentFlashcard.where(student_flashcard_set: @student_flashcard_set))
     # @student_flashcard = StudentFlashcard.new
-    authorize @student_flashcard
   end
 
   def new
     @student_flashcard = StudentFlashcard.new
     authorize @student_flashcard
-    # @topics = Topic.all
   end
 
   def create
@@ -47,7 +46,7 @@ class StudentFlashcardsController < ApplicationController
     authorize @student_flashcard
     @student_flashcard_set = StudentFlashcardSet.find(params[:student_flashcard_set_id])
     @student_flashcard.destroy
-    redirect_to flashcard_set_path(@flashcard_set)
+    redirect_to student_flashcard_set_path(@student_flashcard_set)
   end
 
   private

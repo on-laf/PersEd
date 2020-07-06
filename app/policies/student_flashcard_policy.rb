@@ -18,11 +18,11 @@ class StudentFlashcardPolicy < ApplicationPolicy
     end
 
     def update?
-      record.teacher == user.teacher
+      record.flashcard_template.teacher == user.teacher
     end
 
     def destroy?
-      record.teacher == user.teacher
+      record.flashcard_template.teacher == user.teacher
     end
   end
 end

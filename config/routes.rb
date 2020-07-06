@@ -11,12 +11,12 @@ Rails.application.routes.draw do
     resources :flashcard_templates do
       resources :student_flashcards
     end
-      resources :flashcard_homework
+      resources :flashcard_homeworks
   end
   resources :students do
     resources :student_flashcard_sets do
-    resources :student_flashcards
-  end
+      resources :student_flashcards
+    end
     resources :students_groups
   end
   resources :topics
