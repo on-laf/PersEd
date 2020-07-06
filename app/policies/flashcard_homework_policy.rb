@@ -10,7 +10,7 @@ class FlashcardHomeworkPolicy < ApplicationPolicy
   end
 
   def show?
-    record.group.teacher.user = user
+    record.group.teacher.user == user
   end
 
   def create?
@@ -18,10 +18,10 @@ class FlashcardHomeworkPolicy < ApplicationPolicy
   end
 
   def update?
-    record.group.teacher.user = user
+    record.group.teacher.user == user
   end
 
   def destroy?
-    record.group.teacher.user = user
+    record.group.teacher.user == user
   end
 end
