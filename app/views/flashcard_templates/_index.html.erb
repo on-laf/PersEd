@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="flashcard_templates_card my-3">
+  <div class="flashcard_templates_card my-5">
     <h2>Create a new flashcard</h2>
       <%= simple_form_for [flashcard_set, flashcard_template] do |f| %>
         <%= f.association :topic, label: "Topic:", collection: @topics, label_method: :topic_name %>
@@ -12,7 +12,7 @@
     <% flashcard_templates.each do |fs| %>
       <div class="col-12 col-md-6 col-lg-4">
         <%= link_to "#", class: "flashcard-link" do %>
-          <div class="card flashcard_templates_card flashcard-templates-card-grow my-5">
+          <div class="card flashcard_templates_card flashcard-templates-card-grow my-3">
             <div class="flashcard_templates_card_infos">
               <p><strong><%= fs.question %></strong></p>
               <p><%= fs.answer %></p>
