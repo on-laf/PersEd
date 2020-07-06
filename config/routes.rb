@@ -6,17 +6,17 @@ Rails.application.routes.draw do
     resources :teacher_subjects, only: [:create, :destroy]
   end
   resources :groups
-  resources :homework
   resources :flashcard_sets do
     resources :flashcard_templates do
       resources :student_flashcards
     end
+      resources :flashcard_homework
   end
   resources :students do
-    resources :student_flashcard_sets
+    resources :student_flashcard_sets do
     resources :student_flashcards
+  end
     resources :students_groups
-
   end
   resources :topics
 end

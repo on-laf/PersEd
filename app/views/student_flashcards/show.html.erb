@@ -1,0 +1,16 @@
+show page for student flashcard
+
+<%= link_to 'Back', student_student_flashcard_sets_student_flashcards_path, class: "btn btn-outline-dark m-2" %>
+<div class="container mt-3">
+  <div class="quiz-question-card">
+   <div class="container">
+     <h1>Edit the student flashcard</h1>
+
+     <%= simple_form_for @student_flashcard do |f| %>
+       <%= f.input :question %>
+       <div>
+         <%= f.button :submit, class: 'btn btn-dark' %>
+         <%= link_to 'Cancel', student_flashcard_path(@student_flashcard), class: 'btn btn-outline-dark' %>
+       </div>
+     <% end %>
+   </div>
