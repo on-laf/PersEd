@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_123952) do
+ActiveRecord::Schema.define(version: 2020_07_06_105139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 2020_07_02_123952) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "flashcard_homeworks", force: :cascade do |t|
+    t.string "name"
+    t.datetime "due_date"
+    t.bigint "group_id", null: false
+    t.bigint "flashcard_set_id", null: false
+    t.boolean "draft?", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["flashcard_set_id"], name: "index_flashcard_homeworks_on_flashcard_set_id"
+    t.index ["group_id"], name: "index_flashcard_homeworks_on_group_id"
   end
 
   create_table "flashcard_sets", force: :cascade do |t|
@@ -63,6 +75,31 @@ ActiveRecord::Schema.define(version: 2020_07_02_123952) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["teacher_id"], name: "index_groups_on_teacher_id"
+  end
+
+  create_table "student_flashcard_sets", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "flashcard_homework_id", null: false
+    t.boolean "sent", default: false
+    t.boolean "submitted", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["flashcard_homework_id"], name: "index_student_flashcard_sets_on_flashcard_homework_id"
+    t.index ["student_id"], name: "index_student_flashcard_sets_on_student_id"
+  end
+
+  create_table "student_flashcards", force: :cascade do |t|
+    t.text "question"
+    t.text "answer"
+    t.text "student_answer"
+    t.text "feedback"
+    t.boolean "completed", default: false
+    t.bigint "flashcard_template_id", null: false
+    t.bigint "student_flashcard_set_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["flashcard_template_id"], name: "index_student_flashcards_on_flashcard_template_id"
+    t.index ["student_flashcard_set_id"], name: "index_student_flashcards_on_student_flashcard_set_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -128,11 +165,17 @@ ActiveRecord::Schema.define(version: 2020_07_02_123952) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "flashcard_homeworks", "flashcard_sets"
+  add_foreign_key "flashcard_homeworks", "groups"
   add_foreign_key "flashcard_sets", "teachers"
   add_foreign_key "flashcard_templates", "flashcard_sets"
   add_foreign_key "flashcard_templates", "teachers"
   add_foreign_key "flashcard_templates", "topics"
   add_foreign_key "groups", "teachers"
+  add_foreign_key "student_flashcard_sets", "flashcard_homeworks"
+  add_foreign_key "student_flashcard_sets", "students"
+  add_foreign_key "student_flashcards", "flashcard_templates"
+  add_foreign_key "student_flashcards", "student_flashcard_sets"
   add_foreign_key "students_groups", "groups"
   add_foreign_key "students_groups", "students"
   add_foreign_key "teacher_subjects", "subjects"
