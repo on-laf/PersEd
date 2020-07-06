@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   resources :groups
   resources :flashcard_sets do
+    resources :flashcard_homeworks
     resources :flashcard_templates do
       resources :student_flashcards
     end
