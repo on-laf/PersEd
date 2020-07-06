@@ -5,5 +5,6 @@ class Teacher < ApplicationRecord
   has_many :subjects, through: :teacher_subjects
   has_many :flashcard_sets
   has_many :flashcard_templates
+  has_many :flashcard_homeworks, through: :flashcard_sets
   validates :first_name, :last_name, presence: true
 end
