@@ -2,6 +2,8 @@ class QuizController < ApplicationController
   before_action :find_quiz, only: [:show, :edit, :update, :destroy]
 
 def index
+  @quizes = policy_scope(Quiz)
+  authorize @quizes
 end
 
 def show
