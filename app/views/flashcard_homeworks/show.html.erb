@@ -1,0 +1,8 @@
+<div class="container mt-5">
+  <h1><%= @flashcard_homework.name %></h1>
+  <% if @flashcard_homework.due_date %>
+    <p>Due on <%= @flashcard_homework.due_date.strftime("%d/%m/%Y") %></p>
+  <% end %>
+  <h3><%= @flashcard_homework.group.class_name %></h3>
+
+</div>
