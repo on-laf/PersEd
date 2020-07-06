@@ -94,6 +94,7 @@
 }
 
 .customized-button-std{
+  font-color: white;
   text-align: center;
   background-color: #D86767;
   border-radius: 6px;
@@ -108,7 +109,9 @@
   text-align: center;
   letter-spacing: 0.02em;
   padding: 10px;
-}
+  &.hover: black;
+
+
 
 .centered-btn {
   align-items: center;
