@@ -1,5 +1,13 @@
 <div class="container mt-5">
-  <h1><%= @flashcard_homework.name %></h1>
+  <div class="d-flex">
+    <h1 style="flex-grow: 1; display: inline-block;"><%= @flashcard_homework.name %></h1>
+    <%= link_to flop_send_flashcard_homework_path(@flashcard_homework), class: "btn btn-dark m-2" do %>
+      Send  <i class="far fa-paper-plane"></i>
+    <% end %>
+    <%= link_to flop_draft_flashcard_homework_path(@flashcard_homework), class: "btn btn-outline-dark my-2" do %>
+      Save draft  <i class="far fa-save" style="font-size: 18px;"></i>
+    <% end %>
+  </div>
   <% if @flashcard_homework.due_date %>
     <p>Due on <%= @flashcard_homework.due_date.strftime("%d/%m/%Y") %></p>
   <% end %>
