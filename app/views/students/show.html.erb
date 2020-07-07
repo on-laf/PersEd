@@ -1,7 +1,7 @@
 
 
 
-<div class="container mt-4">
+<div class="container mt-5">
       <h3 style="text-align: center; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);  padding: 16px;"> Welcome to Your Student Profile </h3>
 
   <div class="row mt-5">
@@ -27,17 +27,17 @@
 
       <h4><%= pluralize @student.groups.size, 'Class' %></h4>
         <% @student.groups.each do |group| %>
-        <div class="card-product" style="margin-top: 0.7em">
+        <div class="card-box" style="margin-top: 0.7em">
           <%= image_tag "classroom.svg" %>
-            <div class="card-product-infos">
+            <div class="card-box-infos">
               <h2><%= group.class_name %></h2>
               <p> Leave the class <%= link_to student_students_group_path(@student, @students_groups.find_by(group: group)),
               method: :delete,
               data: { confirm: "Are you sure you want to leave this class?" } do %>
               <i class="fas fa-sign-out-alt"></i> </p>
+              <% end %>
             </div>
         </div>
-      <% end %>
     <% end %>
 
     <br>
