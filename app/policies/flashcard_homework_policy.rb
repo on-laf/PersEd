@@ -1,12 +1,8 @@
 class FlashcardHomeworkPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where('group.teacher' => current_teacher)
+      scope.all
     end
-  end
-
-  def index?
-    true
   end
 
   def show?

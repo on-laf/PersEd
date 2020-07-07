@@ -1,6 +1,6 @@
 class FlashcardHomeworksController < ApplicationController
   def new
-    @flashcard_set = FlashcardSet.find(params[:flashcard_set_id])
+    @flashcard_set = FlashcardSet.find(params[:flashcard_set].to_i)
     authorize @flashcard_set
     @flashcard_homework = FlashcardHomework.new
     authorize @flashcard_homework
@@ -9,7 +9,7 @@ class FlashcardHomeworksController < ApplicationController
   end
 
   def create
-    @flashcard_set = FlashcardSet.find(params[:flashcard_set_id])
+    @flashcard_set = FlashcardSet.find(params['flashcard_homework'][:flashcard_set].to_i)
     authorize @flashcard_set
     @flashcard_homework = FlashcardHomework.new(flashcard_homework_params)
     @flashcard_homework.flashcard_set = @flashcard_set
@@ -22,10 +22,14 @@ class FlashcardHomeworksController < ApplicationController
           StudentFlashcard.create(flashcard_template: flashcard, student_flashcard_set: set, question: flashcard.question, answer: flashcard.answer)
         end
       end
-      redirect_to flashcard_set_flashcard_homework_path(@flashcard_set, @flashcard_homework)
+      redirect_to flashcard_homework_path(@flashcard_set, @flashcard_homework)
     else
       render :new
     end
+  end
+
+  def index
+    @flashcard_homeworks = policy_scope(current_teacher.flashcard_homeworks)
   end
 
   def show

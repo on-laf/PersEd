@@ -12,7 +12,7 @@
           <i class="fas fa-trash-alt text-dark"></i>
       <% end %>
     </h1>
-    <%= link_to 'Set as homework', new_flashcard_set_flashcard_homework_path(@flashcard_set), class: "btn btn-dark my-2" %>
+    <%= link_to 'Set as homework', new_flashcard_homework_path(flashcard_set: @flashcard_set), class: "btn btn-dark my-2" %>
   </div>
   <%= render "flashcard_templates/index",
     topics: @topics,
