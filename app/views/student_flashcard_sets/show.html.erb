@@ -1,0 +1,24 @@
+<%= link_to 'Back', flashcard_homework_path(@student_flashcard_set.flashcard_homework), class: "btn btn-outline-dark m-2" %>
+<div class="container">
+  <div class="d-flex" style="align-items: center;">
+    <% if @student_flashcard_set.student.user.profile_photo? %>
+      <%= cl_image_tag student.user.photo.key, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
+    <% else %>
+      <%= icon('fas', 'user-circle', class: 'avatar-large avatar-large-icon') %>
+    <% end %>
+    <p style="margin: 0 20px;"><%= @student_flashcard_set.student.first_name %> <%= @student_flashcard_set.student.last_name %></p>
+  </div>
+  <div class="row">
+    <% @student_flashcards.each do |sf| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <%= link_to student_flashcard_set_student_flashcard_path(@student_flashcard_set,sf), class: "flashcard-link" do %>
+          <div class="card flashcard_sets_card flashcard-sets-card-grow my-3">
+            <div class="flashcard_sets_card_infos">
+              <h2><%= sf.question %></h2>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

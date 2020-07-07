@@ -25,6 +25,8 @@ class StudentFlashcardsController < ApplicationController
 
   def show
     authorize @student_flashcard
+    @student_flashcard_set = @student_flashcard.student_flashcard_set
+    authorize @student_flashcard_set
   end
 
   def edit
