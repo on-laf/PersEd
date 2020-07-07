@@ -2,10 +2,8 @@ class StudentFlashcardsController < ApplicationController
   before_action :find_student_flashcard, only: [:show, :edit, :update, :destroy]
 
   def index
-    @student_flashcard_set = StudentFlashcardSet.find(params[:student_flashcard_set_id])
-    authorize @student_flashcard_set
-    @student_flashcards = policy_scope(StudentFlashcard.where(student_flashcard_set: @student_flashcard_set))
-    # @student_flashcard = StudentFlashcard.new
+    @student_flashcards = policy_scope(StudentFlashcard)
+    authorize @student_flashcards
   end
 
   def new
