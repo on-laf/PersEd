@@ -1,4 +1,4 @@
-class StudentFlashcardPolicy < ApplicationPolicy
+class StudentFlashcardSetPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -18,10 +18,10 @@ class StudentFlashcardPolicy < ApplicationPolicy
   end
 
   def update?
-    record.flashcard_template.teacher == user.teacher
+    record.flashcard_homework.group.teacher.user == user
   end
 
   def destroy?
-    record.flashcard_template.teacher == user.teacher
+    record.flashcard_homework.group.teacher.user == user
   end
 end

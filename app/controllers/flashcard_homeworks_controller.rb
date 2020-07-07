@@ -31,7 +31,10 @@ class FlashcardHomeworksController < ApplicationController
   def show
     @flashcard_homework = FlashcardHomework.find(params[:id])
     authorize @flashcard_homework
-    # @student_flashcard_sets = @flashcard_homework.student_flashcard_sets
+    @student_flashcard_sets = @flashcard_homework.student_flashcard_sets
+    authorize @student_flashcard_sets
+    @students = @flashcard_homework.group.students
+    authorize @students
   end
 
   private
