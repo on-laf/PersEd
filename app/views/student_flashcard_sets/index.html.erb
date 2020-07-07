@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <h1>Homeworks</h1>
+  <div class="row">
+    <% if !@student_flashcard_sets.empty? %>
+      <% @student_flashcard_sets.each do |homework| %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <%= link_to student_flashcard_set_path(homework), class: "flashcard-link" do %>
+            <div class="card flashcard_sets_card flashcard-sets-card-grow my-3">
+              <div class="flashcard_sets_card_infos">
+                <h2><%= homework.flashcard_homework.name %></h2>
+                <p><%= homework.flashcard_homework.group.class_name %></p>
+                <p><%= homework.flashcard_homework.due_date.nil? ? "No due date" : homework.flashcard_homework.due_date.strftime("Due on %d/%m/%Y") %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

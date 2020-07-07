@@ -31,8 +31,6 @@ class FlashcardHomeworksController < ApplicationController
   def index
     if teacher?
       @flashcard_homeworks = policy_scope(current_teacher.flashcard_homeworks)
-    else
-      @flashcard_homeworks = policy_scope(current_student.groups.flashcard_homeworks.where(sent?: true))
     end
   end
 
@@ -43,6 +41,25 @@ class FlashcardHomeworksController < ApplicationController
     authorize @student_flashcard_sets
     @students = @flashcard_homework.group.students
     authorize @students
+  end
+
+  # Without the scheduling functionality, drafy and sent serve exactly the same purpose
+  # def flop_draft
+  #   @flashcard_homework = FlashcardHomework.find(params[:id])
+  #   @flashcard_homework.draft = false
+  #   authorize @flashcard_homework
+  #   @flashcard_homework.save
+  #   redirect_to flashcard_sets_path
+  # end
+
+  def flop_send
+    @flashcard_homework = FlashcardHomework.find(params[:id])
+    @flashcard_homework.draft = false
+    @flashcard_homework.sent = true
+    authorize @flashcard_homework
+    @flashcard_homework.save
+    # rethink this redirect, it should be for the dashboard once it exists
+    redirect_to flashcard_sets_path
   end
 
   private
