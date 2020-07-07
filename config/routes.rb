@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :student_flashcard_sets do
     resources :student_flashcards
   end
+
+  mount Blazer::Engine, at: "blazer"
 end

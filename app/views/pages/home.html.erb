@@ -1,4 +1,6 @@
 <%= render "partials/home_banner" %>
 <%= render "partials/home_icons" %>
+<% query = Blazer::Query.find(1) %>
+<%= render "queries/query", query: query %>
 
 
