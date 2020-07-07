@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :flashcard_homeworks do
     member do
       get :flop_send
-      get :flop_draft
+      # get :flop_draft
     end
   end
   resources :flashcard_sets do
@@ -21,5 +21,8 @@ Rails.application.routes.draw do
   resources :topics
   resources :student_flashcard_sets do
     resources :student_flashcards
+    member do
+      get :flop_submit
+    end
   end
 end

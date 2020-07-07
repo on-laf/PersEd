@@ -43,13 +43,14 @@ class FlashcardHomeworksController < ApplicationController
     authorize @students
   end
 
-  def flop_draft
-    @flashcard_homework = FlashcardHomework.find(params[:id])
-    @flashcard_homework.draft = false
-    authorize @flashcard_homework
-    @flashcard_homework.save
-    redirect_to flashcard_sets_path
-  end
+  # Without the scheduling functionality, drafy and sent serve exactly the same purpose
+  # def flop_draft
+  #   @flashcard_homework = FlashcardHomework.find(params[:id])
+  #   @flashcard_homework.draft = false
+  #   authorize @flashcard_homework
+  #   @flashcard_homework.save
+  #   redirect_to flashcard_sets_path
+  # end
 
   def flop_send
     @flashcard_homework = FlashcardHomework.find(params[:id])

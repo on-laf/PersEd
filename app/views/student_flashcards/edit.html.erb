@@ -1,0 +1,64 @@
+<!-- render a lot of partials
+- teacher's edit for personalization (changing question and answer)
+- teacher's edit to add feedback
+- student's edit to answer -->
+
+<%= link_to 'Back', student_flashcard_set_path(@student_flashcard_set), class: "btn btn-outline-dark m-2" %>
+<div class="container">
+  <% if teacher? %>
+    <div class="d-flex" style="align-items: center;">
+      <% if @student_flashcard_set.student.user.profile_photo? %>
+        <%= cl_image_tag student.user.photo.key, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
+      <% else %>
+        <%= icon('fas', 'user-circle', class: 'avatar-large avatar-large-icon') %>
+      <% end %>
+      <p style="margin: 0 20px;"><%= @student_flashcard_set.student.first_name %> <%= @student_flashcard_set.student.last_name %></p>
+    </div>
+  <% end %>
+  <% if !@flashcard_homework.sent %>
+    <!-- teachers can personalize -->
+    <%= simple_form_for [@student_flashcard_set, @student_flashcard] do |f| %>
+      <%= f.input :question, label: "Question:", input_html: {value: @student_flashcard.question, style: 'height:2.5em;'} %>
+      <%= f.input :answer, label: "Answer:", input_html: {value: @student_flashcard.answer, style: 'height:2.5em;'} %>
+      <div>
+        <%= f.submit 'Update flashcard', class: 'btn btn-dark' %>
+        <%= link_to 'Cancel', student_flashcard_set_path(@student_flashcard_set), class: "btn btn-outline-dark ml-2" %>
+      </div>
+    <% end %>
+  <% elsif @student_flashcard_set.submitted %>
+    <!-- teachers can add feedback -->
+    <h3><%= @student_flashcard.question %></h3>
+    <p><%= @student_flashcard.student_answer %></p>
+    <%= simple_form_for [@student_flashcard_set, @student_flashcard] do |f| %>
+      <%= f.input :feedback %>
+      <div>
+        <%= f.submit 'Send feedback', class: 'btn btn-dark' %>
+        <%= link_to 'Cancel', student_flashcard_set_path(@student_flashcard_set), class: "btn btn-outline-dark ml-2" %>
+      </div>
+    <% end %>
+  <% else %>
+    <!-- students can answer -->
+    <h3><%= @student_flashcard.question %></h3>
+    <%= simple_form_for [@student_flashcard_set, @student_flashcard] do |f| %>
+      <%= f.input :student_answer, label: "Answer:" %>
+      <div>
+        <%= f.submit 'Save answer', class: 'btn btn-dark' %>
+        <%= link_to 'Cancel', student_flashcard_set_path(@student_flashcard_set), class: "btn btn-outline-dark ml-2" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
