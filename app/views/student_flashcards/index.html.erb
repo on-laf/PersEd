@@ -1,0 +1,20 @@
+index
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4">
+      <% @student_flashcards.each do |sf| %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <%= link_to student_flashcard_path(sf), class: "flashcard-link" do %>
+            <div class="card flashcard_sets_card flashcard-sets-card-grow my-3">
+              <div class="flashcard_sets_card_infos">
+                <h2><%= sf.question %></h2>
+                raise
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
