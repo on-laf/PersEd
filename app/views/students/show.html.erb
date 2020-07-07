@@ -28,7 +28,7 @@
     <br>
     <%= simple_form_for [@student, @students_group] do |f| %>
       <%= f.association :group, input_html: { class: "beautiful-dropdown" }, include_hidden: false, label: 'Choose a Class' %>
-      <%= f.submit "Join Class", class: "btn btn-primary" %>
+      <%= f.submit "Join Class", class: "btn btn-dark" %>
     <% end %>
   </div>
 </div>

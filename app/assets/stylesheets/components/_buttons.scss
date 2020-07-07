@@ -1,0 +1,60 @@
+.btn {
+  text-align: center;
+  background-color: #D86767;
+  border-radius: 8px;
+  width: 220px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 15px;
+  font-size: 15px;
+  line-height: 14px;
+  display: flex-center ;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.02em;
+  padding: 10px;
+  border-color: #D86767;
+    &:hover {
+    background-color: black;
+  }
+}
+
+
+//   .btn-dark   <- bootstrap
+
+
+// landing page class for centering the buttons on the banner
+
+.centered-btn {
+  align-items: center;
+  align-content: center;
+  margin: 0 auto;
+  margin-top:100px;
+
+}
+
+//different style? hm..
+.customized-button-tchr {
+  font-color: black;
+  background-color: white;
+  border-color: black;
+}
+
+
+
+//  button version 1 - REGISTER STUDENT <- home.banner.html.erb
+
+
+
+// .customized-button-std{
+//   background-color: #D86767;
+//     &:hover {
+//   color: black;
+//   background-color: black;
+//   opacity: 1;
+
+//   }
+// }
+
+
+
