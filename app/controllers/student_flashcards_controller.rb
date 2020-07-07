@@ -4,12 +4,6 @@ class StudentFlashcardsController < ApplicationController
   def index
     @student_flashcards = policy_scope(StudentFlashcard)
     authorize @student_flashcards
-    # @student_flashcard_set = StudentFlashcardSet.find(params[:student_flashcard_set_id])
-    @flashcard_set = FlashcardSet.find(params[:flashcard_set_id])
-    @flashcard_template = FlashcardTemplate.find(params[:flashcard_template_id])
-    # authorize @student_flashcard_sets
-    # @student_flashcards = policy_scope(StudentFlashcard.where(student_flashcard_set: @student_flashcard_set))
-    # @student_flashcard = StudentFlashcard.new
   end
 
   def new
@@ -30,8 +24,6 @@ class StudentFlashcardsController < ApplicationController
   end
 
   def show
-    @student_flashcard = StudentFlashcard.find(params[:id])
-    @student_flashcard.flashcard_template = @flashcard_template
     authorize @student_flashcard
   end
 
