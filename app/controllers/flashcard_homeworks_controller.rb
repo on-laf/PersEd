@@ -29,7 +29,11 @@ class FlashcardHomeworksController < ApplicationController
   end
 
   def index
-    @flashcard_homeworks = policy_scope(current_teacher.flashcard_homeworks)
+    if teacher?
+      @flashcard_homeworks = policy_scope(current_teacher.flashcard_homeworks)
+    else
+      @flashcard_homeworks = policy_scope(current_student.groups.flashcard_homeworks.where(sent?: true))
+    end
   end
 
   def show
