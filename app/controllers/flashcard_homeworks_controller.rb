@@ -22,7 +22,7 @@ class FlashcardHomeworksController < ApplicationController
           StudentFlashcard.create(flashcard_template: flashcard, student_flashcard_set: set, question: flashcard.question, answer: flashcard.answer)
         end
       end
-      redirect_to flashcard_homework_path(@flashcard_set, @flashcard_homework)
+      redirect_to flashcard_homework_path(@flashcard_homework)
     else
       render :new
     end
