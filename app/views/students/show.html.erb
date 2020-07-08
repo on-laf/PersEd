@@ -20,13 +20,13 @@
       <h4><%= pluralize @student.groups.size, 'Class' %></h4>
       <% @student.groups.each do |group| %>
         <div class="card-box" style="margin-top: 0.7em">
-          <%= image_tag "classroom.svg" %>
+            <i class="fas fa-chalkboard-teacher" style="font-size: 30px; margin-right: 16px;"></i>
             <div class="card-box-infos">
-              <h2><%= group.class_name %></h2>
-              <p> Leave the class <%= link_to student_students_group_path(@student, @students_groups.find_by(group: group)),
-              method: :delete,
-              data: { confirm: "Are you sure you want to leave this class?" } do %>
-              <i class="fas fa-sign-out-alt txt-link-marine"></i> </p>
+              <h6><%= group.class_name %></h6>
+              <%= link_to student_students_group_path(@student, @students_groups.find_by(group: group)),
+                method: :delete,
+                data: { confirm: "Are you sure you want to leave this class?" }, class: "txt-link-marine" do %>
+                <p>Leave the class <i class="fas fa-sign-out-alt"></i></p>
               <% end %>
             </div>
         </div>
@@ -34,7 +34,7 @@
 
       <br>
       <%= simple_form_for [@student, @students_group] do |f| %>
-        <%= f.association :group, input_html: { class: "beautiful-dropdown" }, include_hidden: false, label: 'Choose a Class' %>
+        <%= f.association :group, input_html: { class: "beautiful-dropdown" }, include_hidden: false, label: 'Choose a Class', input_html: {style: 'max-width: 250px;'} %>
         <%= f.submit "Join Class", class: "btn our-btn btn-outline-marine" %>
       <% end %>
     </div>
@@ -42,7 +42,7 @@
     <div class="col-12 col-lg-8">
       <h4> Homework Manager </h4>
       <div class="notification">
-            <%= image_tag "question.svg", class: "avatar-large" %>
+        <i class="fas fa-clipboard-list" style="font-size: 36px; color: #fed9b7;"></i>
         <div class="notification-content">
           <p><small>14th January</small></p>
           <p>Economics <strong>flashcards</strong> 20 cards set</p>
@@ -55,7 +55,7 @@
       </div>
 
       <div class="notification">
-        <%= image_tag "question.svg", class: "avatar-large" %>
+        <i class="fas fa-clipboard-list" style="font-size: 36px; color: #fed9b7;"></i>
         <div class="notification-content">
           <p><small>9th January</small></p>
           <p>Chemistry <strong>quiz</strong> 30 questions</p>
