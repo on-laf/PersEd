@@ -1,7 +1,7 @@
 <%= link_to 'Back', groups_path, class: "btn btn-outline-dark m-2" %>
 <div class="container">
   <h1><%= @group.class_name %></h1>
-  <% @group.students.each do |student| %>
+  <% @group.students.order(:first_name).each do |student| %>
     <div class="card card-horizontal my-3">
       <div class="card-horizontal-parcel">
         <% if student.user.profile_photo? %>
