@@ -9,7 +9,7 @@
     <% end %>
     </div>
   <div class="row">
-    <% flashcard_templates.each do |fs| %>
+    <% flashcard_templates.order(updated_at: :desc).each do |fs| %>
       <div class="col-12 col-md-6 col-lg-4">
         <%= link_to "#", class: "flashcard-link" do %>
           <div class="card my-3">
