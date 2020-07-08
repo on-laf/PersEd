@@ -17,7 +17,7 @@ class StudentFlashcardsController < ApplicationController
     @student_flashcard.flashcard_template = @flashcard_template
     authorize @student_flashcard
     if @student_flashcard.save
-      redirect_to student_flashcard_set_path(@student_flashcard)
+      redirect_to student_flashcard_set_path(@student_flashcard_set)
     else
       render "student_flashcard_sets/show"
     end
@@ -31,12 +31,15 @@ class StudentFlashcardsController < ApplicationController
 
   def edit
     authorize @student_flashcard
+    @student_flashcard_set = StudentFlashcardSet.find(params[:student_flashcard_set_id])
+    @flashcard_homework = @student_flashcard_set.flashcard_homework
   end
 
   def update
     authorize @student_flashcard
+    @student_flashcard_set = StudentFlashcardSet.find(params[:student_flashcard_set_id])
     if @student_flashcard.update(student_flashcard_params)
-      redirect_to @student_flashcard
+      redirect_to student_flashcard_set_path(@student_flashcard_set)
     else
       render :edit
     end
@@ -45,6 +48,7 @@ class StudentFlashcardsController < ApplicationController
   def destroy
     authorize @student_flashcard
     @student_flashcard_set = StudentFlashcardSet.find(params[:student_flashcard_set_id])
+    authorize @student_flashcard_set
     @student_flashcard.destroy
     redirect_to student_flashcard_set_path(@student_flashcard_set)
   end

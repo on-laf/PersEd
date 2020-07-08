@@ -1,5 +1,15 @@
 <div class="container mt-5">
-  <h1><%= @flashcard_homework.name %></h1>
+  <div class="d-flex">
+    <h1 style="flex-grow: 1; display: inline-block;"><%= @flashcard_homework.name %></h1>
+    <% if !@flashcard_homework.sent %>
+      <%= link_to flop_send_flashcard_homework_path(@flashcard_homework), class: "btn btn-dark m-2" do %>
+        Send  <i class="far fa-paper-plane"></i>
+      <% end %>
+      <%= link_to flashcard_homeworks_path, class: "btn btn-outline-dark my-2" do %>
+        Save draft  <i class="far fa-save" style="font-size: 18px;"></i>
+      <% end %>
+    <% end %>
+  </div>
   <% if @flashcard_homework.due_date %>
     <p>Due on <%= @flashcard_homework.due_date.strftime("%d/%m/%Y") %></p>
   <% end %>
@@ -17,13 +27,27 @@
         <div class="card-horizontal-parcel card-horizontal-center">
           <p><%= student.first_name %> <%= student.last_name %></p>
         </div>
-        <%= link_to 'Personalise', student_flashcard_set_path(@student_flashcard_sets.find_by(student: student)), class: "btn btn-dark" %>
+        <%= link_to student_flashcard_set_path(@student_flashcard_sets.find_by(student: student)), class: "btn btn-dark" do %>
+          <% if !@flashcard_homework.sent %>
+            See flashcards
+          <% elsif @student_flashcard_sets.find_by(student: student).submitted %>
+            Check answers
+          <% else %>
+            See flashcards
+          <% end %>
+        <% end %>
       </div>
       <div class="d-flex" style="overflow: scroll;">
         <% @student_flashcard_sets.find_by(student: student).student_flashcards.each do |flashcard| %>
           <div class="card" style="width: 300px; min-width: 300px; margin-right: 16px;">
             <p><strong><%= flashcard.question %></strong></p>
-            <p><%= flashcard.answer %></p>
+            <% if !@flashcard_homework.sent %>
+              <p><%= flashcard.answer %></p>
+            <% elsif flashcard.student_flashcard_set.submitted %>
+              <p><%= flashcard.student_answer %></p>
+            <% else %>
+              <p style="color: darkgrey;"><em>Waiting for Student's answer</em></p>
+            <% end %>
           </div>
         <% end %>
       </div>

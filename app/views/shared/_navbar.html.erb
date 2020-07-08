@@ -7,19 +7,19 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-
+<div class="navbar-right">
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <% if teacher? %>
           <li class="nav-item active">
-            <%= link_to "Classes", groups_path, class: "nav-link" %>
+            <%= link_to "Classes", groups_path, class: "btn btn-outline-dark" %>
           </li>
           <li class="nav-item active">
-            <%= link_to "Topics", topics_path, class: "nav-link" %>
+            <%= link_to "Topics", topics_path, class: "btn btn-outline-dark" %>
           </li>
           <li class="nav-item active">
-            <%= link_to "Flashcards", flashcard_sets_path, class: "nav-link" %>
+            <%= link_to "Flashcards", flashcard_sets_path, class: "btn btn-outline-dark" %>
           </li>
           <li class="nav-item active">
             <%= link_to "Homeworks", flashcard_homeworks_path, class: "nav-link" %>
@@ -36,6 +36,11 @@
             </div>
           </li>
         <% else %>
+          <% if !current_student.groups.empty? %>
+            <li class="nav-item active">
+              <%= link_to "Homeworks", student_flashcard_sets_path, class: "nav-link" %>
+            </li>
+          <% end %>
           <li class="nav-item dropdown">
             <% if current_user.profile_photo? %>
               <%= cl_image_tag current_user.photo.key, height: 40, width: 40, crop: :thumb, gravity: :face, class: "avatar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -50,9 +55,10 @@
         <% end %>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-outline-dark" %>
         </li>
       <% end %>
     </ul>
-  </div>
+      </div>
+    </div>
 </div>

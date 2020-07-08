@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_135056) do
+ActiveRecord::Schema.define(version: 2020_07_07_165449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 2020_07_07_135056) do
     t.datetime "due_date"
     t.bigint "group_id", null: false
     t.bigint "flashcard_set_id", null: false
-    t.boolean "draft?", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "sent?", default: false
+    t.boolean "sent", default: false
+    t.boolean "draft", default: true
     t.index ["flashcard_set_id"], name: "index_flashcard_homeworks_on_flashcard_set_id"
     t.index ["group_id"], name: "index_flashcard_homeworks_on_group_id"
   end

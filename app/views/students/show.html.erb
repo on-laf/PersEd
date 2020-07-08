@@ -1,8 +1,5 @@
-
-
-
 <div class="container mt-5">
-      <h3 style="text-align: center; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);  padding: 16px;"> Welcome to Your Student Profile </h3>
+  <h3 style="text-align: center; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);  padding: 16px;"> Welcome to Your Student Profile </h3>
 
   <div class="row mt-5">
     <div class="col-12 col-lg-4">
@@ -43,7 +40,7 @@
     <br>
       <%= simple_form_for [@student, @students_group] do |f| %>
         <%= f.association :group, input_html: { class: "beautiful-dropdown" }, include_hidden: false, label: 'Choose a Class' %>
-        <%= f.submit "Join Class", class: "btn btn-primary" %>
+        <%= f.submit "Join Class", class: "btn btn-outline-dark" %>
       <% end %>
     </div>
 
@@ -78,6 +75,4 @@
     </div>
   </div>
 </div>
-
-
 

@@ -20,4 +20,8 @@ class FlashcardHomeworkPolicy < ApplicationPolicy
   def destroy?
     record.group.teacher.user == user
   end
+
+  def flop_send?
+    record.group.teacher.user == user
+  end
 end
