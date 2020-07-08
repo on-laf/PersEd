@@ -28,7 +28,7 @@ class FlashcardSetsController < ApplicationController
     @flashcard_templates = policy_scope(FlashcardTemplate.where(flashcard_set: @flashcard_set))
     @flashcard_template = FlashcardTemplate.new
     authorize @flashcard_template
-    @topics = policy_scope(Topic)
+    @topics = filter_topics(policy_scope(Topic))
   end
 
   def edit
@@ -51,6 +51,10 @@ class FlashcardSetsController < ApplicationController
   end
 
   private
+
+  def filter_topics(topics)
+    topics.select { |topic| current_teacher.subjects.include?(topic.subject) }
+  end
 
   def find_flashcard_set
     @flashcard_set = FlashcardSet.find(params[:id])

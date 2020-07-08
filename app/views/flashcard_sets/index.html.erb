@@ -1,4 +1,5 @@
 <div class="container mt-5">
+  <h1>Flashcards</h1>
   <div class="row">
     <div class="col-12 col-md-6 col-lg-4">
       <div class="card flashcard_sets_card my-3">
@@ -17,7 +18,6 @@
             <div class="flashcard_sets_card_infos">
               <h2><%= fs.name %></h2>
               <p><%= pluralize fs.flashcard_templates.size, 'flashcard' %></p>
-              <!-- number of flashcards in this set -->
             </div>
           </div>
         <% end %>

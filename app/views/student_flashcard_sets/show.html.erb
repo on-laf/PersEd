@@ -1,0 +1,78 @@
+<% if teacher? %>
+  <%= link_to 'Back', flashcard_homework_path(@flashcard_homework), class: "btn btn-outline-dark m-2" %>
+  <div class="container">
+    <div class="d-flex" style="align-items: center;">
+      <% if @student_flashcard_set.student.user.profile_photo? %>
+        <%= cl_image_tag student.user.photo.key, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
+      <% else %>
+        <%= icon('fas', 'user-circle', class: 'avatar-large avatar-large-icon') %>
+      <% end %>
+      <p style="margin: 0 20px;"><%= @student_flashcard_set.student.first_name %> <%= @student_flashcard_set.student.last_name %></p>
+    </div>
+    <div class="row">
+      <% @student_flashcards.each do |sf| %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card my-3">
+            <div>
+              <% if !@flashcard_homework.sent %>
+                <p><strong><%= sf.question %></strong></p>
+                <p><%= sf.answer %></p>
+                <%= link_to edit_student_flashcard_set_student_flashcard_path(@student_flashcard_set, sf), class: "icon-link" do %>
+                  <i class="fas fa-pencil-alt text-dark"></i>
+                <% end %>
+                <%= link_to student_flashcard_set_student_flashcard_path(@student_flashcard_set, sf),
+                    method: :delete,
+                    data: { confirm: "Are you sure you want to delete this flashcard?" } do %>
+                    <i class="fas fa-trash-alt text-dark"></i>
+                <% end %>
+              <% elsif @student_flashcard_set.submitted %>
+                <p><strong><%= sf.question %></strong></p>
+                <p><%= sf.student_answer %></p>
+                <% if sf.feedback.nil? %>
+                  <%= link_to 'Add feedback', edit_student_flashcard_set_student_flashcard_path(@student_flashcard_set, sf), class: "btn btn-dark"%>
+                <% else %>
+                  <p style="color: darkgrey;"><em><%= sf.feedback %></em></p>
+                <% end %>
+              <% else %>
+                <p><strong><%= sf.question %></strong></p>
+                <p><%= sf.answer %></p>
+                <p style="color: darkgrey;"><em>Waiting for Student's answer</em></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <%= link_to 'Back', student_flashcard_sets_path, class: "btn btn-outline-dark m-2" %>
+  <div class="container">
+    <div class="d-flex">
+      <h1 style="display: inline-block; flex-grow: 1;"><%= @flashcard_homework.name %></h1>
+      <% if !@student_flashcard_set.submitted %>
+        <%= link_to flop_submit_student_flashcard_set_path(@student_flashcard_set), class: "btn btn-dark my-2" do %>
+          Submit  <i class="far fa-paper-plane"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="row">
+      <% @student_flashcards.each do |sf| %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card my-3">
+            <p><strong><%= sf.question %></strong></p>
+            <% if sf.student_answer.nil? %>
+              <%= link_to 'Answer', edit_student_flashcard_set_student_flashcard_path(@student_flashcard_set, sf), class: "btn btn-dark"%>
+            <% else %>
+              <p><%= sf.student_answer %></p>
+            <% end %>
+            <% if !sf.feedback.nil? %>
+              <p style="color: darkgrey; margin: 0;"><em>Teacher's feedback:</em></p>
+              <p style="color: darkgrey;"><em><%= sf.feedback %></em></p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+

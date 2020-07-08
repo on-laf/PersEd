@@ -21,6 +21,9 @@
           <li class="nav-item active">
             <%= link_to "Flashcards", flashcard_sets_path, class: "btn btn-outline-dark" %>
           </li>
+          <li class="nav-item active">
+            <%= link_to "Homeworks", flashcard_homeworks_path, class: "nav-link" %>
+          </li>
           <li class="nav-item dropdown">
             <% if current_user.profile_photo? %>
               <%= cl_image_tag current_user.photo.key, height: 40, width: 40, crop: :thumb, gravity: :face, class: "avatar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -33,6 +36,11 @@
             </div>
           </li>
         <% else %>
+          <% if !current_student.groups.empty? %>
+            <li class="nav-item active">
+              <%= link_to "Homeworks", student_flashcard_sets_path, class: "nav-link" %>
+            </li>
+          <% end %>
           <li class="nav-item dropdown">
             <% if current_user.profile_photo? %>
               <%= cl_image_tag current_user.photo.key, height: 40, width: 40, crop: :thumb, gravity: :face, class: "avatar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>

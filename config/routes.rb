@@ -6,17 +6,23 @@ Rails.application.routes.draw do
     resources :teacher_subjects, only: [:create, :destroy]
   end
   resources :groups
-  resources :homework
-  resources :flashcard_sets do
-    resources :flashcard_templates do
-      resources :student_flashcards
+  resources :flashcard_homeworks do
+    member do
+      get :flop_send
+      # get :flop_draft
     end
   end
+  resources :flashcard_sets do
+    resources :flashcard_templates
+  end
   resources :students do
-    resources :student_flashcard_sets
-    resources :student_flashcards
     resources :students_groups
-
   end
   resources :topics
+  resources :student_flashcard_sets do
+    resources :student_flashcards
+    member do
+      get :flop_submit
+    end
+  end
 end

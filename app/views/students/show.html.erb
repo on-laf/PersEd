@@ -1,34 +1,78 @@
-<div class="container">
-  <div class="d-flex my-5">
-    <div class="mr-5">
-      <% if current_user.profile_photo? %>
-        <%= cl_image_tag current_user.photo.key, height: 150, width: 150, crop: :thumb, gravity: :face, class: "avatar-xl" %>
-      <% else %>
-        <i class="fas fa-user-circle" style="font-size: 150px;"></i>
+<div class="container mt-5">
+  <h3 style="text-align: center; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);  padding: 16px;"> Welcome to Your Student Profile </h3>
+
+  <div class="row mt-5">
+    <div class="col-12 col-lg-4">
+      <div class="d-flex" style="align-items: center;">
+        <div style="width: 150px; margin-right: 20px;">
+
+          <% if current_user.profile_photo? %>
+            <%= cl_image_tag current_user.photo.key, height: 150, width: 150, crop: :thumb, gravity: :face, class: "avatar-xl" %>
+          <% else %>
+            <i class="fas fa-user-circle" style="font-size: 150px;"></i>
+        <% end %>
+        </div>
+        <div style="max-width: 250px;">
+          <h5><%= @student.first_name %> <%= @student.last_name %></h5>
+          <p><%= current_user.email %></p>
+          <%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-outline-dark" %>
+        </div>
+      </div>
+      <br>
+
+
+
+      <h4><%= pluralize @student.groups.size, 'Class' %></h4>
+        <% @student.groups.each do |group| %>
+        <div class="card-box" style="margin-top: 0.7em">
+          <%= image_tag "classroom.svg" %>
+            <div class="card-box-infos">
+              <h2><%= group.class_name %></h2>
+              <p> Leave the class <%= link_to student_students_group_path(@student, @students_groups.find_by(group: group)),
+              method: :delete,
+              data: { confirm: "Are you sure you want to leave this class?" } do %>
+              <i class="fas fa-sign-out-alt"></i> </p>
+              <% end %>
+            </div>
+        </div>
+    <% end %>
+
+    <br>
+      <%= simple_form_for [@student, @students_group] do |f| %>
+        <%= f.association :group, input_html: { class: "beautiful-dropdown" }, include_hidden: false, label: 'Choose a Class' %>
+        <%= f.submit "Join Class", class: "btn btn-outline-dark" %>
       <% end %>
     </div>
-    <div class="d-flex flex-column justify-content-center">
-      <h5><%= @student.first_name %> <%= @student.last_name %></h5>
-      <p><%= current_user.email %></p>
-      <%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-outline-dark" %>
+
+    <div class="col-12 col-lg-8">
+    <h4> Homework Manager </h4>
+
+      <div class="notification">
+            <%= image_tag "question.svg", class: "avatar-large" %>
+        <div class="notification-content">
+          <p><small>14th January</small></p>
+          <p>Economics <strong>flashcards</strong> 20 cards set</p>
+        </div>
+
+        <div class="notification-actions">
+          <a href="#">Solve <i class="fas fa-pencil-alt"></i></a>
+          <a href="#">Archive <i class="far fa-trash-alt"></i></a>
+        </div>
+      </div>
+
+    <div class="notification">
+        <%= image_tag "question.svg", class: "avatar-large" %>
+      <div class="notification-content">
+        <p><small>9th January</small></p>
+        <p>Chemistry <strong>quiz</strong> 30 questions</p>
+      </div>
+
+      <div class="notification-actions">
+        <a href="#">Solve <i class="fas fa-pencil-alt"></i></a>
+        <a href="#">Archive <i class="far fa-trash-alt"></i></a>
+      </div>
+    </div>
     </div>
   </div>
-  <div>
-    <h6><%= pluralize @student.groups.size, 'Class' %></h6>
-    <% @student.groups.each do |group| %>
-      <p>
-        <%= group.class_name %>
-        <%= link_to student_students_group_path(@student, @students_groups.find_by(group: group)),
-            method: :delete,
-            data: { confirm: "Are you sure you want to leave this class?" } do %>
-            <i class="fas fa-sign-out-alt"></i>
-        <% end %>
-      </p>
-    <% end %>
-    <br>
-    <%= simple_form_for [@student, @students_group] do |f| %>
-      <%= f.association :group, input_html: { class: "beautiful-dropdown" }, include_hidden: false, label: 'Choose a Class' %>
-      <%= f.submit "Join Class", class: "btn btn-dark" %>
-    <% end %>
-  </div>
 </div>
+

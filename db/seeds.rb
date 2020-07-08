@@ -8,7 +8,8 @@
 require "open-uri"
 
 puts 'Cleaning the database...'
-FlashcardTemplate.destroy_all
+StudentFlashcardSet.destroy_all
+FlashcardHomework.destroy_all
 FlashcardSet.destroy_all
 Teacher.destroy_all
 Topic.destroy_all
