@@ -46,12 +46,16 @@
   </div>
 <% else %>
   <%= link_to 'Back', student_flashcard_sets_path, class: "our-btn btn-peach m-2" %>
-  <div class="container">
+  <div class="container mb-5">
     <div class="d-flex">
       <h1 style="display: inline-block; flex-grow: 1;"><%= @flashcard_homework.name %></h1>
       <% if !@student_flashcard_set.submitted %>
-        <%= link_to flop_submit_student_flashcard_set_path(@student_flashcard_set), class: "our-btn btn-marine my-2" do %>
-          Submit  <i class="far fa-paper-plane"></i>
+        <% if @ready %>
+          <%= link_to flop_submit_student_flashcard_set_path(@student_flashcard_set), class: "our-btn btn-marine my-2" do %>
+            Submit  <i class="far fa-paper-plane"></i>
+          <% end %>
+        <% else %>
+          <div class="our-btn btn-marine btn-marine-blocked my-2">Submit  <i class="far fa-paper-plane"></i></div>
         <% end %>
       <% end %>
     </div>
