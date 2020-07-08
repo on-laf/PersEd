@@ -1,24 +1,23 @@
-  <div class="row">
-    <div class="col-sm-6 padding-kill">
-      <div class="banner" style="background-image: linear-gradient(rgba(170,170,170,0.3),rgba(170,170,170,0.3)), url(https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80);">
-        <div class= "text-right">
-          <h1>Per</h1>
-          <h3>When homeworks are pleasure</h3>
-        </div>
-        <div class="centered-btn">
-          <%= link_to 'REGISTER AS A STUDENT', new_user_registration_path(teacher: false), class: 'our-btn btn-marine btn-landing' %>
-        </div>
+<div class="banner-grid">
+  <div class="banner-grid-left">
+    <div class="banner" style="background-image: linear-gradient(rgba(200,200,200,0.3),rgba(170,170,170,0.3)), url(https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80);">
+      <div class= "text-right">
+        <h1>Pers</h1>
+        <h3>When homeworks are pleasure, </h3>
+      </div>
+      <div class="centered-btn">
+        <%= link_to 'REGISTER AS A STUDENT', new_user_registration_path(teacher: false), class: 'our-btn btn-marine btn-landing' %>
       </div>
     </div>
+  </div>
 
-
-    <div class="col-sm-6 padding-kill align-text-center">
-     <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1555436169-20e93ea9a7ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60);">
+  <div class="banner-grid-right">
+   <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1555436169-20e93ea9a7ff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60);">
       <div class="text-left">
-        <h1>Sed</h1>
-        <h3>, the greatest teaching experience</h3>
+        <h1>Ed</h1>
+        <h3> the greatest teaching experience</h3>
       </div>
-        <div class="centered-btn">
+      <div class="centered-btn">
         <%= link_to 'REGISTER AS A TEACHER', new_user_registration_path(teacher: true), class: 'our-btn btn-teal btn-landing' %>
       </div>
     </div>
