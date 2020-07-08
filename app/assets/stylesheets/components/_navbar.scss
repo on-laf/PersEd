@@ -5,20 +5,11 @@
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
-  a {
-    width: 100px;
-  }
 }
-
-
-.btn-navbar-lewagon .navbar-brand .nav-link img {
-  width: 55px;
-}
-
 
 
 .navbar-lewagon .navbar-brand img {
-  width: 90px;
+  width: 55px;
 }
 
 #logo-text {
@@ -34,9 +25,7 @@
   padding: 16px;
 }
 
-.navbar-light .navbar-nav .active > .nav-link {
-  font-size: 14px;
+.log-in {
   display: inline-block;
-  padding: 10px;
-  color: white;
+  padding: 0 16px;
 }

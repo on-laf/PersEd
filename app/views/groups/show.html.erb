@@ -1,5 +1,5 @@
-<%= link_to 'Back', groups_path, class: "btn btn-outline-dark" %>
-<div class="container">
+<%= link_to 'Back', groups_path, class: "our-btn btn-peach m-2" %>
+<div class="container mb-5">
   <h1><%= @group.class_name %></h1>
   <% @group.students.order(:first_name).each do |student| %>
     <div class="card card-horizontal my-3">
@@ -14,7 +14,7 @@
         <p><%= student.first_name %> <%= student.last_name %></p>
       </div>
       <div class="card-horizontal-parcel">
-        <%= link_to 'See progress', "#", class: "btn btn-outline-dark" %>
+        <%= link_to 'See progress', "#", class: "our-btn btn-outline-marine" %>
       </div>
     </div>
   <% end %>

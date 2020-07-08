@@ -33,6 +33,7 @@ class FlashcardTemplatesController < ApplicationController
 
   def edit
     authorize @flashcard_template
+    @flashcard_set = FlashcardSet.find(params[:flashcard_set_id])
   end
 
   def update
