@@ -15,15 +15,12 @@
         <div style="max-width: 250px;">
           <h5><%= @student.first_name %> <%= @student.last_name %></h5>
           <p><%= current_user.email %></p>
-          <%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-outline-dark" %>
+          <%= link_to 'Edit Profile', edit_user_registration_path, class: "our-btn btn-outline-marine" %>
         </div>
       </div>
       <br>
-
-
-
       <h4><%= pluralize @student.groups.size, 'Class' %></h4>
-        <% @student.groups.each do |group| %>
+      <% @student.groups.each do |group| %>
         <div class="card-box" style="margin-top: 0.7em">
           <%= image_tag "classroom.svg" %>
             <div class="card-box-infos">
@@ -35,18 +32,17 @@
               <% end %>
             </div>
         </div>
-    <% end %>
+      <% end %>
 
-    <br>
+      <br>
       <%= simple_form_for [@student, @students_group] do |f| %>
         <%= f.association :group, input_html: { class: "beautiful-dropdown" }, include_hidden: false, label: 'Choose a Class' %>
-        <%= f.submit "Join Class", class: "btn btn-outline-dark" %>
+        <%= f.submit "Join Class", class: "our-btn btn-outline-marine" %>
       <% end %>
     </div>
 
     <div class="col-12 col-lg-8">
-    <h4> Homework Manager </h4>
-
+      <h4> Homework Manager </h4>
       <div class="notification">
             <%= image_tag "question.svg", class: "avatar-large" %>
         <div class="notification-content">
@@ -60,18 +56,18 @@
         </div>
       </div>
 
-    <div class="notification">
+      <div class="notification">
         <%= image_tag "question.svg", class: "avatar-large" %>
-      <div class="notification-content">
-        <p><small>9th January</small></p>
-        <p>Chemistry <strong>quiz</strong> 30 questions</p>
-      </div>
+        <div class="notification-content">
+          <p><small>9th January</small></p>
+          <p>Chemistry <strong>quiz</strong> 30 questions</p>
+        </div>
 
-      <div class="notification-actions">
-        <a href="#">Solve <i class="fas fa-pencil-alt"></i></a>
-        <a href="#">Archive <i class="far fa-trash-alt"></i></a>
+        <div class="notification-actions">
+          <a href="#">Solve <i class="fas fa-pencil-alt"></i></a>
+          <a href="#">Archive <i class="far fa-trash-alt"></i></a>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container my-5">
   <h1>Homeworks</h1>
   <!-- being able to create homeworks from here would be nice -->
   <!-- <div class="col-12 col-md-6 col-lg-4">
@@ -8,7 +8,7 @@
     </div>
   </div> -->
   <% if !@flashcard_homeworks_draft.empty? %>
-    <p style="color: darkgray; font-size: 20px; margin-bottom: 0; margin-top: 16px;">Drafts <i class="far fa-save"></i></p>
+    <p style="color: #00afb9; font-size: 20px; margin-bottom: 0; margin-top: 16px;">Drafts <i class="far fa-save"></i></p>
     <div class="row">
       <% @flashcard_homeworks_draft.each do |homework| %>
         <div class="col-12 col-md-6 col-lg-4">
@@ -26,7 +26,7 @@
     </div>
   <% end %>
   <% if !@flashcard_homeworks_sent.empty? %>
-    <p style="color: darkgray; font-size: 20px; margin-bottom: 0; margin-top: 16px;">Sent <i class="far fa-paper-plane"></i></p>
+    <p style="color: #00afb9; font-size: 20px; margin-bottom: 0; margin-top: 16px;">Sent <i class="far fa-paper-plane"></i></p>
     <div class="row">
       <% @flashcard_homeworks_sent.each do |homework| %>
         <div class="col-12 col-md-6 col-lg-4">

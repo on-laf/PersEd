@@ -34,9 +34,11 @@
 
 .btn-marine {
   background-color: $marine-blue;
+  border: solid 1px $marine-blue;
   color: white;
   &:hover {
     background-color: #005E7A;
+    border: solid 1px #005E7A;
     color: white;
   }
 }
@@ -52,9 +54,11 @@
 
 .btn-teal {
   background-color: $teal;
+  border: solid 1px $teal;
   color: white;
   &:hover {
     background-color: #008A91;
+    border: solid 1px #008A91;
     color: white;
   }
 }
@@ -70,18 +74,22 @@
 
 .btn-peach {
   background-color: $peach;
+  border: solid 1px $peach;
   color: black;
   &:hover {
     background-color: #FFCC9C;
+    border: solid 1px #FFCC9C;
     color: black;
   }
 }
 
 .btn-salmon {
   background-color: $salmon;
+  border: solid 1px $salmon;
   color: white;
   &:hover {
     background-color: #F0584D;
+    border: solid 1px #F0584D;
     color: white;
   }
 }

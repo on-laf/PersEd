@@ -1,15 +1,12 @@
-<div class="container">
-  <h1>Edit the flashcard template's name</h1>
+<div class="container my-5">
+  <h1>Edit the flashcard</h1>
 
-  <%= simple_form_for @flashcard_template do |f| %>
-    <%= f.input :name %>
+  <%= simple_form_for [@flashcard_set, @flashcard_template] do |f| %>
+    <%= f.input :question %>
+    <%= f.input :answer %>
     <div>
-      <%= f.button :submit, class: 'btn btn-dark' %>
-      <%= link_to 'Cancel', flashcard_template_path(@flashcard_template), class: 'btn btn-dark' %>
+      <%= f.submit 'Update', class: 'our-btn btn-marine mr-2' %>
+      <%= link_to 'Cancel', flashcard_set_path(@flashcard_set), class: 'our-btn btn-salmon' %>
     </div>
   <% end %>
 </div>
-
-
-
-<!-- TO THE CANCEL/DELETE BUTTONS - ADD A NEW CLASS -->
