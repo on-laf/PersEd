@@ -1,44 +1,116 @@
-.my-btn {
-  text-align: center;
-  background-color: #D86767;
-  border-radius: 8px;
-  width: 220px;
+// .my-btn {
+//   text-align: center;
+//   background-color: #D86767;
+//   border-radius: 8px;
+//   width: 220px;
+//   font-family: Roboto;
+//   font-style: normal;
+//   font-weight: 15px;
+//   font-size: 15px;
+//   line-height: 14px;
+//   display: flex-center ;
+//   align-items: center;
+//   text-align: center;
+//   letter-spacing: 0.02em;
+//   padding: 10px;
+//   border-color: #D86767;
+//     &:hover {
+//     background-color: black;
+//   }
+// }
+
+.our-btn {
   font-family: Roboto;
-  font-style: normal;
-  font-weight: 15px;
-  font-size: 15px;
-  line-height: 14px;
-  display: flex-center ;
-  align-items: center;
-  text-align: center;
+  font-size: 16px;
   letter-spacing: 0.02em;
-  padding: 10px;
-  border-color: #D86767;
-    &:hover {
-    background-color: black;
+  text-align: center;
+  padding: 6px 18px;
+  border-radius: 5px;
+  display: inline-block;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.btn-marine {
+  background-color: $marine-blue;
+  color: white;
+  &:hover {
+    background-color: #005E7A;
+    color: white;
+  }
+}
+
+.btn-outline-marine {
+  border: solid 1px $marine-blue;
+  color: $marine-blue;
+  &:hover {
+    background-color: $marine-blue;
+    color: white;
+  }
+}
+
+.btn-teal {
+  background-color: $teal;
+  color: white;
+  &:hover {
+    background-color: #008A91;
+    color: white;
+  }
+}
+
+.btn-outline-teal {
+  border: solid 1px $teal;
+  color: $teal;
+  &:hover {
+    background-color: $teal;
+    color: white;
+  }
+}
+
+.btn-peach {
+  background-color: $peach;
+  color: black;
+  &:hover {
+    background-color: #FFCC9C;
+    color: black;
+  }
+}
+
+.btn-salmon {
+  background-color: $salmon;
+  color: white;
+  &:hover {
+    background-color: #F0584D;
+    color: white;
   }
 }
 
 
-//   .btn-dark   <- bootstrap
-
-
 // landing page class for centering the buttons on the banner
 
+.btn-landing {
+  padding: 12px 20px;
+}
+
 .centered-btn {
-  align-items: center;
-  align-content: center;
   margin: 0 auto;
   margin-top:100px;
-
 }
 
-//different style? hm..
-.customized-button-tchr {
-  font-color: black;
-  background-color: white;
-  border-color: black;
+.txt-link-marine {
+  color: $marine-blue;
+  &:hover {
+    color: #005E7A;
+    text-decoration: none;
+  }
 }
+// //different style? hm..
+// .customized-button-tchr {
+//   font-color: black;
+//   background-color: white;
+//   border-color: black;
+// }
 
 
 
