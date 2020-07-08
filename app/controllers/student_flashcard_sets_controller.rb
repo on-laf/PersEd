@@ -11,6 +11,7 @@ class StudentFlashcardSetsController < ApplicationController
     @student_flashcards = @student_flashcard_set.student_flashcards
     authorize @student_flashcards
     @flashcard_homework = @student_flashcard_set.flashcard_homework
+    @ready = ready_submit?(@student_flashcard_set)
   end
 
   def flop_submit
@@ -33,5 +34,12 @@ class StudentFlashcardSetsController < ApplicationController
 
   def filter_submitted(sets)
     sets.select { |set| set.submitted }
+  end
+
+  def ready_submit?(set)
+    set.student_flashcards.each do |card|
+      return false if card.student_answer.nil?
+    end
+    return true
   end
 end

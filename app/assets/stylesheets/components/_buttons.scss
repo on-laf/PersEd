@@ -52,6 +52,15 @@
   }
 }
 
+.btn-marine-blocked {
+  opacity: 0.5;
+  &:hover {
+    background-color: $marine-blue;
+    border: solid 1px $marine-blue;
+    color: white;
+  }
+}
+
 .btn-teal {
   background-color: $teal;
   border: solid 1px $teal;
