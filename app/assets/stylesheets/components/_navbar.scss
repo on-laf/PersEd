@@ -5,20 +5,27 @@
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
-    a {
-      color: white;
-      background-color: #D86767;
-      border-radius: 4px;
-      width: 100px;
-      font-family: Roboto;
-      font-style: normal;
-      font-size: 16px;
-      line-height: 14px;
-      text-align: center;
-      letter-spacing: 0.02em;
-    }
 }
+
 
 .navbar-lewagon .navbar-brand img {
   width: 55px;
+}
+
+#logo-text {
+  padding-top: auto;
+}
+
+.navbar-lewagon .navbar-brand p {
+  padding-top: 20px;
+}
+
+.nav-item {
+  display: inline-block;
+  padding: 16px;
+}
+
+.log-in {
+  display: inline-block;
+  padding: 0 16px;
 }

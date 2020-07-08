@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container my-5">
   <h1>Flashcards</h1>
   <div class="row">
     <div class="col-12 col-md-6 col-lg-4">
@@ -6,12 +6,12 @@
         <h2>Create a new flashcard set</h2>
         <%= simple_form_for @flashcard_set do |f| %>
           <%= f.input :name, label: "What's this new flashcard set about?" %>
-          <%= f.submit 'Create new flashcard set', class: 'btn btn-outline-dark' %>
+          <%= f.submit 'Create new flashcard set', class: 'btn our-btn btn-outline-marine' %>
         <% end %>
       </div>
     </div>
 
-    <% @flashcard_sets.each do |fs| %>
+    <% @flashcard_sets.order(updated_at: :desc).each do |fs| %>
       <div class="col-12 col-md-6 col-lg-4">
         <%= link_to flashcard_set_path(fs), class: "flashcard-link" do %>
           <div class="card flashcard_sets_card flashcard-sets-card-grow my-3">

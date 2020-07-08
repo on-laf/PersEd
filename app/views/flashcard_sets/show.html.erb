@@ -1,21 +1,22 @@
-<%= link_to 'Back', flashcard_sets_path, class: "btn btn-outline-dark m-2" %>
-<div class="container ">
+<%= link_to 'Back', flashcard_sets_path, class: "our-btn btn-peach m-2" %>
+<div class="container mb-5">
   <div class="d-flex mb-3">
     <h1 style="flex-grow: 1;">
       <%= @flashcard_set.name %>
       <%= link_to edit_flashcard_set_path(@flashcard_set), class: "icon-link" do %>
-        <i class="fas fa-pencil-alt text-dark"></i>
+        <i class="fas fa-pencil-alt txt-link-marine"></i>
       <% end %>
       <%= link_to flashcard_set_path(@flashcard_set),
           method: :delete,
           data: { confirm: "Are you sure you want to delete this set?" } do %>
-          <i class="fas fa-trash-alt text-dark"></i>
+          <i class="fas fa-trash-alt txt-link-marine"></i>
       <% end %>
     </h1>
-    <%= link_to 'Set as homework', new_flashcard_homework_path(flashcard_set: @flashcard_set), class: "btn btn-dark my-2" %>
+    <%= link_to 'Set as homework', new_flashcard_homework_path(flashcard_set: @flashcard_set), class: "our-btn btn-marine my-2" %>
   </div>
   <%= render "flashcard_templates/index",
     flashcard_set: @flashcard_set,
     flashcard_template: @flashcard_template,
     flashcard_templates: @flashcard_templates %>
 </div>
+

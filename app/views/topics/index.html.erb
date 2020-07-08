@@ -1,19 +1,19 @@
 <div class="container">
-  <% @subjects.each do |subject| %>
+  <% @subjects.order(:subject_name).each do |subject| %>
     <div class="my-5">
       <h1><%= subject.subject_name %></h1>
       <%= simple_form_for @topic do |f| %>
         <%= f.input :topic_name, label: "New topic's name" %>
         <%= f.input :subject_id, as: :hidden, input_html: { :value => subject.id } %>
-        <%= f.submit 'Create new topic', class: "btn btn-outline-dark mb-3" %>
+        <%= f.submit 'Create new topic', class: "our-btn btn-marine mb-3" %>
       <% end %>
-      <% subject.topics.each do |topic| %>
+      <% subject.topics.order(:topic_name).each do |topic| %>
         <p>
           <%= topic.topic_name %>
           <%= link_to topic_path(topic),
             method: :delete,
             data: { confirm: "Are you sure?" } do %>
-            <i class="fas fa-trash-alt"></i>
+            <i class="fas fa-trash-alt txt-link-marine"></i>
           <% end %>
         </p>
       <% end %>

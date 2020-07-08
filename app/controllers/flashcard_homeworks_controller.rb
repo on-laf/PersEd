@@ -30,7 +30,8 @@ class FlashcardHomeworksController < ApplicationController
 
   def index
     if teacher?
-      @flashcard_homeworks = policy_scope(current_teacher.flashcard_homeworks)
+      @flashcard_homeworks_sent = filter_sent(policy_scope(current_teacher.flashcard_homeworks).order(updated_at: :desc))
+      @flashcard_homeworks_draft = filter_draft(policy_scope(current_teacher.flashcard_homeworks).order(updated_at: :desc))
     end
   end
 
@@ -63,6 +64,14 @@ class FlashcardHomeworksController < ApplicationController
   end
 
   private
+
+  def filter_sent(homeworks)
+    homeworks.select { |homework| homework.sent }
+  end
+
+  def filter_draft(homeworks)
+    homeworks.select { |homework| homework.draft }
+  end
 
   def flashcard_homework_params
     params.require(:flashcard_homework).permit(:name, :due_date, :group_id)
