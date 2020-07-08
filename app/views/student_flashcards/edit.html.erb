@@ -1,7 +1,7 @@
-<%= link_to 'Back', student_flashcard_set_path(@student_flashcard_set), class: "btn btn-outline-dark m-2" %>
+<%= link_to 'Back', student_flashcard_set_path(@student_flashcard_set), class: "our-btn btn-peach m-2" %>
 <div class="container">
   <% if teacher? %>
-    <div class="d-flex" style="align-items: center;">
+    <div class="d-flex mb-3" style="align-items: center;">
       <% if @student_flashcard_set.student.user.profile_photo? %>
         <%= cl_image_tag student.user.photo.key, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
       <% else %>
@@ -16,8 +16,8 @@
       <%= f.input :question, label: "Question:", input_html: {value: @student_flashcard.question, style: 'height:2.5em;'} %>
       <%= f.input :answer, label: "Answer:", input_html: {value: @student_flashcard.answer, style: 'height:2.5em;'} %>
       <div>
-        <%= f.submit 'Update flashcard', class: 'btn btn-dark' %>
-        <%= link_to 'Cancel', student_flashcard_set_path(@student_flashcard_set), class: "btn btn-outline-dark ml-2" %>
+        <%= f.submit 'Update flashcard', class: 'our-btn btn-marine mr-2' %>
+        <%= link_to 'Cancel', student_flashcard_set_path(@student_flashcard_set), class: "our-btn btn-salmon" %>
       </div>
     <% end %>
   <% elsif @student_flashcard_set.submitted %>
@@ -27,8 +27,8 @@
     <%= simple_form_for [@student_flashcard_set, @student_flashcard] do |f| %>
       <%= f.input :feedback %>
       <div>
-        <%= f.submit 'Send feedback', class: 'btn btn-dark' %>
-        <%= link_to 'Cancel', student_flashcard_set_path(@student_flashcard_set), class: "btn btn-outline-dark ml-2" %>
+        <%= f.submit 'Send feedback', class: 'our-btn btn-marine mr-2' %>
+        <%= link_to 'Cancel', student_flashcard_set_path(@student_flashcard_set), class: "our-btn btn-salmon" %>
       </div>
     <% end %>
   <% else %>
@@ -37,8 +37,8 @@
     <%= simple_form_for [@student_flashcard_set, @student_flashcard] do |f| %>
       <%= f.input :student_answer, label: "Answer:" %>
       <div>
-        <%= f.submit 'Save answer', class: 'btn btn-dark' %>
-        <%= link_to 'Cancel', student_flashcard_set_path(@student_flashcard_set), class: "btn btn-outline-dark ml-2" %>
+        <%= f.submit 'Save answer', class: 'our-btn btn-marine' %>
+        <%= link_to 'Cancel', student_flashcard_set_path(@student_flashcard_set), class: "our-btn btn-salmon ml-2" %>
       </div>
     <% end %>
   <% end %>

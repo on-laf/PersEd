@@ -1,14 +1,16 @@
-<div class="container mt-5">
+<div class="container my-5">
   <h1>Homeworks</h1>
-  <div class="row">
-    <!-- <div class="col-12 col-md-6 col-lg-4">
-      <div class="card flashcard_sets_card my-3">
-        <h2>Create a new Homework</h2>
+  <!-- being able to create homeworks from here would be nice -->
+  <!-- <div class="col-12 col-md-6 col-lg-4">
+    <div class="card flashcard_sets_card my-3">
+      <h2>Create a new Homework</h2>
 
-      </div>
-    </div> -->
-    <% if !@flashcard_homeworks.empty? %>
-      <% @flashcard_homeworks.each do |homework| %>
+    </div>
+  </div> -->
+  <% if !@flashcard_homeworks_draft.empty? %>
+    <p style="color: #00afb9; font-size: 20px; margin-bottom: 0; margin-top: 16px;">Drafts <i class="far fa-save"></i></p>
+    <div class="row">
+      <% @flashcard_homeworks_draft.each do |homework| %>
         <div class="col-12 col-md-6 col-lg-4">
           <%= link_to flashcard_homework_path(homework), class: "flashcard-link" do %>
             <div class="card flashcard_sets_card flashcard-sets-card-grow my-3">
@@ -21,6 +23,24 @@
           <% end %>
         </div>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+  <% if !@flashcard_homeworks_sent.empty? %>
+    <p style="color: #00afb9; font-size: 20px; margin-bottom: 0; margin-top: 16px;">Sent <i class="far fa-paper-plane"></i></p>
+    <div class="row">
+      <% @flashcard_homeworks_sent.each do |homework| %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <%= link_to flashcard_homework_path(homework), class: "flashcard-link" do %>
+            <div class="card flashcard_sets_card flashcard-sets-card-grow my-3">
+              <div class="flashcard_sets_card_infos">
+                <h2><%= homework.name %></h2>
+                <p><%= homework.group.class_name %></p>
+                <p><%= homework.due_date.nil? ? "No due date" : homework.due_date.strftime("Due on %d/%m/%Y") %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
