@@ -25,12 +25,12 @@ subjects.each do |subject|
 end
 
 #randomn topic seeds. not cool for demo.
-topics = []
-15.times do
-  new_topic = Topic.new(topic_name: Faker::Educator.unique.subject, subject: Subject.find_by(subject_name: 'Economics'))
-  new_topic.save
-  topics << new_topic
-end
+# topics = []
+# 15.times do
+#   new_topic = Topic.new(topic_name: Faker::Educator.unique.subject, subject: Subject.find_by(subject_name: 'Economics'))
+#   new_topic.save
+#   topics << new_topic
+# end
 
 # topics for demo
 Topic.create(topic_name: "Microeconomics", subject: Subject.find_by(subject_name: 'Economics'))
@@ -49,14 +49,33 @@ Topic.create(topic_name: "Development Economics", subject: Subject.find_by(subje
 # Topic.create(topic_name: "The Balance Between Markets and Intervention", subject: Subject.find_by(subject_name: 'Economics'))
 # Topic.create(topic_name: "Alternative Approaches", subject: Subject.find_by(subject_name: 'Economics'))
 
-puts 'Creating teachers...'
+puts 'Creating demo users...'
 
-demo_teacher_user = new_user = User.new(
+demo_teacher_user = User.new(
     email: "ze.pinto@nova.com",
     password: '123456',
     password_confirmation: '123456'
     )
+# file = URI.open("https://thispersondoesnotexist.com/")
+# demo_teacher_user.photo.attach(
+#   io: file,
+#   filename: "profilepic.png",
+#   content_type: 'image/png'
+#   )
 demo_teacher_user.save
+
+demo_student_user = User.new(
+    email: "janis.howler@nova.com",
+    password: '123456',
+    password_confirmation: '123456'
+    )
+# file2 = URI.open("https://thispersondoesnotexist.com/")
+# demo_student_user.photo.attach(
+#   io: file,
+#   filename: "profilepic.png",
+#   content_type: 'image/png'
+#   )
+demo_student_user.save
 
 demo_teacher = Teacher.new(
     user: demo_teacher_user,
@@ -65,6 +84,28 @@ demo_teacher = Teacher.new(
     )
   demo_teacher.save
 
+demo_student = Student.new(
+    user: demo_student_user,
+    first_name: "Janis",
+    last_name: "Howler",
+    )
+  demo_student.save
+
+  puts 'Creating demo subjects...'
+
+demo_teacher_subject1 = TeacherSubject.new(
+  teacher: demo_teacher,
+  subject: Subject.find_by(subject_name: 'Economics')
+  )
+demo_teacher_subject1.save
+
+demo_teacher_subject2 = TeacherSubject.new(
+  teacher: demo_teacher,
+  subject: Subject.find_by(subject_name: 'Maths')
+  )
+demo_teacher_subject2.save
+
+puts 'Creating demo Flashcards...'
 
 new_flashcard_set_1 = FlashcardSet.new(
      name: "Economic Development",
@@ -271,6 +312,76 @@ new_flashcard_set_9.save
         )
       new_flashcard_template.save
       end
+
+      puts 'Creating demo groups and students...'
+
+
+      subjectcount = 101
+      4.times do
+          new_demo_group = Group.new(
+            teacher: demo_teacher,
+            # class_name: "#{Subject.find_by(subject: demo_teacher_subject1).subject_name}: #{subjectcount}"
+            class_name: "Economics: #{subjectcount}"
+            )
+          new_demo_group.save
+          subjectcount += 1
+
+          demo_student_into_group = StudentsGroup.new(
+            student: demo_student,
+            group: new_demo_group
+            )
+          demo_student_into_group.save
+
+            10.times do
+              new_user = User.new(
+                email: Faker::Internet.email,
+                password: '123456',
+                password_confirmation: '123456'
+                )
+              # file = URI.open("https://thispersondoesnotexist.com/")
+              # new_user.photo.attach(
+              #   io: file,
+              #   filename: "profilepic.png",
+              #   content_type: 'image/png'
+              #   )
+              new_user.save
+
+              new_student = Student.new(
+                user: new_user,
+                first_name: Faker::Name.first_name,
+                last_name: Faker::Name.last_name,
+                )
+              new_student.save
+
+              new_demo_student_group = StudentsGroup.new(
+                student: new_student,
+                group: new_demo_group
+                )
+              new_demo_student_group.save
+              # rescue ActiveStorage::IntegrityError
+              #   file = URI.open("https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80")
+              #   new_teacher.photo.attach(
+              #     io: file,
+              #     filename: "profilepic.png",
+              #     content_type: 'image/png'
+              #     )
+                end
+              end
+
+              puts 'Done seeding for demo...'
+
+
+            # rescue ActiveStorage::IntegrityError
+            #   file = URI.open("https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80")
+            #   new_teacher.photo.attach(
+            #     io: file,
+            #     filename: "profilepic.png",
+            #     content_type: 'image/png'
+            #     )
+        #   end
+        # end
+
+        # TeacherSubject.create(teacher: new_teacher, subject: Subject.find_by(subject_name: subjects.sample))
 
 # 10.times do
 #   new_user = User.new(
