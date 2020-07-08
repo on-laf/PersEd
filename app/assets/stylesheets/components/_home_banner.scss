@@ -1,3 +1,15 @@
+.banner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.banner-grid-left {
+  grid-column-start: 0 / 1;
+}
+
+.banner-grid-right {
+  grid-column-start: 1 / 2;
+}
 
 .banner {
   background-size: cover;
@@ -6,14 +18,16 @@
   padding: 150px 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   .text-left {
     h1 {
       color: white;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
     }
     h3 {
       color: white;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
       margin-top: 35px;
       font-family: Roboto;
     }
@@ -21,22 +35,26 @@
   .text-right {
 
     h1 {
-    color: black;
-        }
+      color: black;
+      text-shadow: 1px 1px 4px rgba(200,200,200,0.5);
+    }
 
     h3 {
-    color: black;
-    text-shadow: 0.6px 0.6px 6px rgba(0,0,0,0.2);
-    margin-top: 35px;
-    font-family: Roboto;
+      color: black;
+      text-shadow: 1px 1px 4px rgba(200,200,200,0.5);
+      margin-top: 35px;
+      font-family: Roboto;
     }
   }
 }
 
 
-.padding-kill {
-  padding-left: 0px;
+.padding-kill-right {
   padding-right: 0px;
+}
+
+.padding-kill-left {
+  padding-left: 0px;
 }
 
 .banner h1 {
@@ -44,7 +62,7 @@
   text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
   font-size: 150px;
   font-weight: bold(0.4);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.07em;
 }
 
 
