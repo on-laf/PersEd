@@ -1,5 +1,5 @@
 <div class="container">
-  <% @subjects.each do |subject| %>
+  <% @subjects.order(:subject_name).each do |subject| %>
     <div class="my-5">
       <h1><%= subject.subject_name %></h1>
       <%= simple_form_for @topic do |f| %>
@@ -7,7 +7,7 @@
         <%= f.input :subject_id, as: :hidden, input_html: { :value => subject.id } %>
         <%= f.submit 'Create new topic', class: "btn btn-dark" %>
       <% end %>
-      <% subject.topics.each do |topic| %>
+      <% subject.topics.order(:topic_name).each do |topic| %>
         <p>
           <%= topic.topic_name %>
           <%= link_to topic_path(topic),
