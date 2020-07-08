@@ -66,59 +66,6 @@
   letter-spacing: 0.04em;
 }
 
-.btn-1 {
-  background: darken($red, 1.5%);
-  font-weight: 100;
-}
-
-.btn-1:hover {
-  background: rgba($red, 0);
-  font-weight: 900;
-  letter-spacing: 1px;
-}
-
-.customized-button-tchr {
-  text-align: center;
-  background-color: white;
-  border-radius: 6px;
-  width: 220px;
-  font-family:Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 14px;
-  display: flex-center;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.02em;
-  padding: 10px;
-}
-
-.customized-button-std{
-  font-color: white;
-  text-align: center;
-  background-color: #D86767;
-  border-radius: 6px;
-  width: 220px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 15px;
-  font-size: 15px;
-  line-height: 14px;
-  display: flex-center ;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.02em;
-  padding: 10px;
-}
-
-.centered-btn {
-  align-items: center;
-  align-content: center;
-  margin: 0 auto;
-  margin-top:100px;
-}
-
 // 2nd Framework //
 
 .intro-text {
@@ -126,7 +73,7 @@
   h1 {
     color: black;
     margin-top: 75px;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
     font-family:Roboto;
 
       }
