@@ -1,78 +1,71 @@
-
-<div class="container mt-5">
+<div class="container my-5">
   <h3 style="text-align: center; color: #0081a7;"> Welcome to Your Teacher Profile </h3>
 
   <div class="row mt-5">
     <div class="col-12 col-lg-4">
       <div class="d-flex" style="align-items: center;">
         <div style="width: 150px; margin-right: 20px;">
-
           <% if current_user.profile_photo? %>
             <%= cl_image_tag current_user.photo.key, height: 150, width: 150, crop: :thumb, gravity: :face, class: "avatar-xl" %>
           <% else %>
-            <i class="fas fa-user-circle" style="font-size: 150px;"></i>
-        <% end %>
+            <i class="fas fa-user-circle" style="font-size: 150px; color: #0081a7;"></i>
+          <% end %>
         </div>
         <div style="max-width: 250px;">
           <h5><%= @teacher.first_name %> <%= @teacher.last_name %></h5>
           <p><%= current_user.email %></p>
-          <%= link_to 'Edit Profile', edit_user_registration_path, class: "btn btn-dark" %>
+          <%= link_to 'Edit Profile', edit_user_registration_path, class: "our-btn btn-outline-marine" %>
         </div>
       </div>
       <br>
-
-
-
+      
       <h4><%= pluralize @teacher.subjects.size, 'Subject' %></h4>
-        <% @teacher.subjects.each do |subject| %>
+      <% @teacher.subjects.each do |subject| %>
         <div class="card-box" style="margin-top: 0.7em">
           <%= image_tag "science.png" %>
-            <div class="card-box-infos">
-              <h2><%= subject.subject_name  %></h2>
-               <%= link_to teacher_teacher_subject_path(@teacher, @teacher_subjects.find_by(subject: subject)),
-              method: :delete,
-              data: { confirm: "Are you sure?" } do %>
-              <i class="fas fa-trash-alt"></i>
-              <% end %>
-            </div>
+          <div class="card-box-infos">
+            <h2><%= subject.subject_name  %></h2>
+             <%= link_to teacher_teacher_subject_path(@teacher, @teacher_subjects.find_by(subject: subject)),
+            method: :delete,
+            data: { confirm: "Are you sure?" } do %>
+            <i class="fas fa-trash-alt txt-link-marine"></i>
+            <% end %>
+          </div>
         </div>
-    <% end %>
-
-    <br>
+      <% end %>
+      <br>
+      
       <%= simple_form_for [@teacher, @teacher_subject] do |f| %>
       <%= f.association :subject, label_method: :subject_name, collection: @subjects, label: 'Add a new subject' %>
-      <%= f.submit 'Add Subject', class: "btn btn-dark" %>
+      <%= f.submit 'Add Subject', class: "our-btn btn-outline-marine" %>
       <% end %>
     </div>
 
     <div class="col-12 col-lg-8">
     <h4> Homework Manager </h4>
-
       <div class="notification">
         <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
         <div class="notification-content">
           <p><small>Owen Laugh-at-me</small></p>
           <p>Submited <strong>Economics flashcards</strong> 20 cards set</p>
         </div>
-
         <div class="notification-actions">
           <a href="#">Correct <i class="fas fa-pencil-alt"></i></a>
           <a href="#">Archive <i class="far fa-trash-alt"></i></a>
         </div>
       </div>
 
-    <div class="notification">
-      <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-      <div class="notification-content">
-        <p><small>Mike Chick-Cat</small></p>
-        <p>Submitted <strong>Chemistry quiz</strong> 30 questions</p>
+      <div class="notification">
+        <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
+        <div class="notification-content">
+          <p><small>Mike Chick-Cat</small></p>
+          <p>Submitted <strong>Chemistry quiz</strong> 30 questions</p>
+        </div>
+        <div class="notification-actions">
+          <a href="#">Correct <i class="fas fa-pencil-alt"></i></a>
+          <a href="#">Archive <i class="far fa-trash-alt"></i></a>
+        </div>
       </div>
-
-      <div class="notification-actions">
-        <a href="#">Correct <i class="fas fa-pencil-alt"></i></a>
-        <a href="#">Archive <i class="far fa-trash-alt"></i></a>
-      </div>
-    </div>
     </div>
   </div>
 </div>
