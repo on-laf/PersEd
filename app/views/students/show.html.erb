@@ -1,16 +1,15 @@
-<div class="container mt-5">
+<div class="container my-5">
   <h3 style="text-align: center; background: white; box-shadow: 0 0 15px rgba(0,0,0,0.2);  padding: 16px;"> Welcome to Your Student Profile </h3>
 
   <div class="row mt-5">
     <div class="col-12 col-lg-4">
       <div class="d-flex" style="align-items: center;">
         <div style="width: 150px; margin-right: 20px;">
-
           <% if current_user.profile_photo? %>
             <%= cl_image_tag current_user.photo.key, height: 150, width: 150, crop: :thumb, gravity: :face, class: "avatar-xl" %>
           <% else %>
-            <i class="fas fa-user-circle" style="font-size: 150px;"></i>
-        <% end %>
+            <i class="fas fa-user-circle" style="font-size: 150px; color: #0081a7;"></i>
+          <% end %>
         </div>
         <div style="max-width: 250px;">
           <h5><%= @student.first_name %> <%= @student.last_name %></h5>
@@ -28,7 +27,7 @@
               <p> Leave the class <%= link_to student_students_group_path(@student, @students_groups.find_by(group: group)),
               method: :delete,
               data: { confirm: "Are you sure you want to leave this class?" } do %>
-              <i class="fas fa-sign-out-alt"></i> </p>
+              <i class="fas fa-sign-out-alt txt-link-marine"></i> </p>
               <% end %>
             </div>
         </div>
@@ -37,7 +36,7 @@
       <br>
       <%= simple_form_for [@student, @students_group] do |f| %>
         <%= f.association :group, input_html: { class: "beautiful-dropdown" }, include_hidden: false, label: 'Choose a Class' %>
-        <%= f.submit "Join Class", class: "our-btn btn-outline-marine" %>
+        <%= f.submit "Join Class", class: "btn our-btn btn-outline-marine" %>
       <% end %>
     </div>
 

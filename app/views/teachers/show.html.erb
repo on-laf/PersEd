@@ -4,7 +4,7 @@
       <% if current_user.profile_photo? %>
         <%= cl_image_tag current_user.photo.key, height: 150, width: 150, crop: :thumb, gravity: :face, class: "avatar-xl" %>
       <% else %>
-        <i class="fas fa-user-circle" style="font-size: 150px;"></i>
+        <i class="fas fa-user-circle" style="font-size: 150px; color: #0081a7;"></i>
       <% end %>
     </div>
     <div class="d-flex flex-column justify-content-center">
@@ -21,7 +21,7 @@
         <%= link_to teacher_teacher_subject_path(@teacher, @teacher_subjects.find_by(subject: subject)),
             method: :delete,
             data: { confirm: "Are you sure?" } do %>
-            <i class="fas fa-trash-alt"></i>
+            <i class="fas fa-trash-alt txt-link-marine"></i>
         <% end %>
       </p>
     <% end %>
