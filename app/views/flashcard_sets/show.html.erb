@@ -15,8 +15,6 @@
     <%= link_to 'Set as homework', new_flashcard_homework_path(flashcard_set: @flashcard_set), class: "btn btn-dark my-2" %>
   </div>
   <%= render "flashcard_templates/index",
-    topics: @topics,
-    topic: @topic,
     flashcard_set: @flashcard_set,
     flashcard_template: @flashcard_template,
     flashcard_templates: @flashcard_templates %>
