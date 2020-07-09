@@ -28,7 +28,7 @@ class TeachersController < ApplicationController
     @teacher_subjects = TeacherSubject.where(teacher: @teacher)
     authorize @teacher_subjects
     @subjects = Subject.all
-    @notifications = current_user.notifications
+    @notifications = current_user.notifications.reverse
   end
 
   def edit

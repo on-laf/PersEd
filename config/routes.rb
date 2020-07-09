@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   end
   resources :topics
   resources :student_flashcard_sets do
-    resources :student_flashcards
+    resources :student_flashcards do
+      member do
+        patch :add_feedback
+      end
+    end
     member do
       get :flop_submit
     end

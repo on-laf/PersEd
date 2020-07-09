@@ -24,7 +24,7 @@
     <!-- teachers can add feedback -->
     <h3><%= @student_flashcard.question %></h3>
     <p><%= @student_flashcard.student_answer %></p>
-    <%= simple_form_for [@student_flashcard_set, @student_flashcard] do |f| %>
+    <%= simple_form_for [@student_flashcard_set, @student_flashcard], :url => add_feedback_student_flashcard_set_student_flashcard_path, :method => :patch do |f| %>
       <%= f.input :feedback %>
       <div>
         <%= f.submit 'Send feedback', class: 'our-btn btn-marine mr-2' %>

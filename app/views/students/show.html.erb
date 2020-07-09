@@ -66,11 +66,11 @@
               </div>
               <div class="notification-content">
                 <p><small><%= notification.created_at.strftime("%A, %d %B") %></small></p>
-                <%= "#{notification.actor.teacher.first_name} #{notification.actor.teacher.last_name} gave you feedback on #{notification.object.due_date.nil? ? '' : notification.object.due_date.strftime(', due on %d/%m/%Y')}" %>
+                <%= "#{notification.actor.teacher.first_name} #{notification.actor.teacher.last_name}" %> gave you <strong>feedback</strong> on <%= "#{notification.object.flashcard_homework.name}" %>
               </div>
               <div class="notification-actions">
-                <%= link_to student_flashcard_set_path(notification.object.student_flashcard_sets.find_by(student: current_student)) do %>
-                  Solve <i class="fas fa-pencil-alt"></i>
+                <%= link_to student_flashcard_set_path(notification.object) do %>
+                  Read <i class="fas fa-book-open"></i>
                 <% end %>
               </div>
             </div>

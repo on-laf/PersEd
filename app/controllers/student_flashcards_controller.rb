@@ -1,5 +1,5 @@
 class StudentFlashcardsController < ApplicationController
-  before_action :find_student_flashcard, only: [:show, :edit, :update, :destroy]
+  before_action :find_student_flashcard, only: [:show, :edit, :update, :destroy, :add_feedback]
 
   def index
     @student_flashcards = policy_scope(StudentFlashcard)
@@ -53,6 +53,17 @@ class StudentFlashcardsController < ApplicationController
     redirect_to student_flashcard_set_path(@student_flashcard_set)
   end
 
+  def add_feedback
+    authorize @student_flashcard
+    @student_flashcard_set = StudentFlashcardSet.find(params[:student_flashcard_set_id])
+    if @student_flashcard.update(student_flashcard_params)
+      notification_feedback(@student_flashcard, @student_flashcard_set)
+      redirect_to student_flashcard_set_path(@student_flashcard_set)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def find_student_flashcard
@@ -61,5 +72,17 @@ class StudentFlashcardsController < ApplicationController
 
   def student_flashcard_params
     params.require(:student_flashcard).permit(:question, :answer, :student_answer, :feedback, :completed, :flashcard_template_id, :student_flashcard_set_id)
+  end
+
+  def notification_feedback(card, set)
+    @group = set.flashcard_homework.group
+    @students = set.flashcard_homework.group.students
+    @students.each do |student|
+      Notification.create(actor: current_user,
+                          recipient: student.user,
+                          action: 'feedback',
+                          object: set,
+                          notifiable: @group)
+    end
   end
 end
