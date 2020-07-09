@@ -29,4 +29,9 @@ Rails.application.routes.draw do
       get :flop_submit
     end
   end
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
 end
