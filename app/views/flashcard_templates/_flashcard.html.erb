@@ -1,0 +1,8 @@
+<div class="my-5">
+  <%= simple_form_for [flashcard_set, flashcard_template] do |f| %>
+    <%= f.association :topic, label: "Topic:", collection: @topics, label_method: :topic_name %>
+    <%= f.input :question, label: "Question:", input_html: {style: 'height:2.5em;'} %>
+    <%= f.input :answer, label: "Answer:", input_html: {style: 'height:2.5em;'} %>
+    <%= f.submit 'Create new flashcard', class: 'btn our-btn btn-marine' %>
+  <% end %>
+</div>
