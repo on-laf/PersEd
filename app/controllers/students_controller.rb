@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
     authorize @students_groups
     @students_group = StudentsGroup.new
     authorize @students_group
-    @notifications = current_user.notifications.reverse
+    @notifications = Notification.where(recipient: current_user).unread.reverse
   end
 
   def new

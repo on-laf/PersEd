@@ -44,8 +44,15 @@
     </div>
 
     <div class="col-12 col-lg-8">
-      <h4> Homework Manager </h4>
-      <% if !@notifications.empty? %>
+      <% if @notifications.empty? %>
+        <div class="mb-3">
+          <h4> Homework Manager </h4>
+        </div>
+      <% else %>
+        <div class="d-flex mb-3">
+          <h4 style="flex-grow: 1;"> Homework Manager </h4>
+          <button class="our-btn btn-peach" id="clear">Clear all <i class="fas fa-trash-alt"></i></button>
+        </div>
         <div data-behavior="notifications-counter">
           <span id="counter" class="notifications text-center"></span>
           <div id="notifications">

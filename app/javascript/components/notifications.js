@@ -24,6 +24,7 @@ function refreshCounter(number) {
 const counterTrigger = document.querySelector('[data-behavior="notifications-counter"]');
 const notifications = document.getElementById('notifications');
 const counter = document.getElementById('counter');
+const clearButton = document.getElementById('clear');
 
 if (notifications && counter) {
   setCallback(({notification, count}) => {
@@ -32,6 +33,10 @@ if (notifications && counter) {
   });
 }
 
-if (counterTrigger) {
-  counterTrigger.addEventListener('click', markAsRead)
+// if (counterTrigger) {
+//   counterTrigger.addEventListener('click', markAsRead)
+// }
+
+if (clearButton) {
+  clearButton.addEventListener('click', markAsRead)
 }
