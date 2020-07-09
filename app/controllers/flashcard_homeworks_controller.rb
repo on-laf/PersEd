@@ -85,11 +85,12 @@ class FlashcardHomeworksController < ApplicationController
     @group = homework.group
     @students = homework.group.students
     @students.each do |student|
-      Notification.create(actor: current_user,
-                          recipient: student.user,
-                          action: 'sent',
-                          object: homework,
-                          notifiable: @group)
+      notification = Notification.create(actor: current_user,
+                                         recipient: student.user,
+                                         action: 'sent',
+                                         object: homework,
+                                         notifiable: @group)
+      NotificationsChannel.broadcast_to("notifications:#{current_user.id}", notification)
     end
   end
 end

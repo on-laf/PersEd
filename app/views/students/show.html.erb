@@ -42,13 +42,18 @@
     <div class="col-12 col-lg-8">
       <h4> Homework Manager </h4>
       <% if !@notifications.empty? %>
-        <% @notifications.each do |notification| %>
-          <% if notification.action == 'sent' %>
-            <%= render 'notifications/groups/sent', notification: notification %>
-          <% elsif notification.action == 'feedback' %>
-            <%= render 'notifications/groups/feedback', notification: notification %>
-          <% end %>
-        <% end %>
+        <div data-behavior="notifications-counter">
+          <span id="counter" class="notifications text-center"></span>
+          <div id="notifications">
+            <% @notifications.each do |notification| %>
+              <% if notification.action == 'sent' %>
+                <%= render 'notifications/groups/sent', notification: notification %>
+              <% elsif notification.action == 'feedback' %>
+                <%= render 'notifications/groups/feedback', notification: notification %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
