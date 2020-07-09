@@ -36,7 +36,7 @@
           <%= link_to 'See flashcards', student_flashcard_set_path(@student_flashcard_sets.find_by(student: student)), class: "our-btn btn-teal" %>
         <% end %>
       </div>
-      <div class="d-flex" style="overflow: scroll;">
+      <div class="d-flex" style="overflow: scroll; padding-bottom: 24px">
         <% @student_flashcard_sets.find_by(student: student).student_flashcards.order(updated_at: :desc).each do |flashcard| %>
           <div class="card" style="width: 300px; min-width: 300px; margin-right: 16px;">
             <p><strong><%= flashcard.question %></strong></p>
