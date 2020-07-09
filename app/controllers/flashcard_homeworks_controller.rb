@@ -1,18 +1,24 @@
 class FlashcardHomeworksController < ApplicationController
   def new
-    @flashcard_set = FlashcardSet.find(params[:flashcard_set].to_i)
-    authorize @flashcard_set
     @flashcard_homework = FlashcardHomework.new
     authorize @flashcard_homework
     @groups = Group.where(teacher: current_teacher)
     authorize @groups
+    if params[:flashcard_set]
+      @flashcard_set = FlashcardSet.find(params[:flashcard_set].to_i)
+      authorize @flashcard_set
+    end
   end
 
   def create
-    @flashcard_set = FlashcardSet.find(params['flashcard_homework'][:flashcard_set].to_i)
-    authorize @flashcard_set
     @flashcard_homework = FlashcardHomework.new(flashcard_homework_params)
-    @flashcard_homework.flashcard_set = @flashcard_set
+    if params['flashcard_homework'][:flashcard_set]
+      @flashcard_set = FlashcardSet.find(params['flashcard_homework'][:flashcard_set].to_i)
+      authorize @flashcard_set
+      @flashcard_homework.flashcard_set = @flashcard_set
+    else
+      @flashcard_set = @flashcard_homework.flashcard_set
+    end
     authorize @flashcard_homework
     if @flashcard_homework.save
       @flashcard_homework.group.students.each do |student|
@@ -78,7 +84,7 @@ class FlashcardHomeworksController < ApplicationController
   end
 
   def flashcard_homework_params
-    params.require(:flashcard_homework).permit(:name, :due_date, :group_id)
+    params.require(:flashcard_homework).permit(:name, :due_date, :group_id, :flashcard_set_id)
   end
 
   def notification_sent(homework)

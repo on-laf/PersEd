@@ -1,12 +1,8 @@
 <div class="container my-5">
-  <h1>Homeworks</h1>
-  <!-- being able to create homeworks from here would be nice -->
-  <!-- <div class="col-12 col-md-6 col-lg-4">
-    <div class="card flashcard_sets_card my-3">
-      <h2>Create a new Homework</h2>
-
-    </div>
-  </div> -->
+  <div class="d-flex">
+    <h1 style="flex-grow: 1;">Homeworks</h1>
+    <%= link_to 'Create new homework', new_flashcard_homework_path, class: "our-btn btn-outline-teal my-2" %>
+  </div>
   <% if !@flashcard_homeworks_draft.empty? %>
     <p style="color: #00afb9; font-size: 20px; margin-bottom: 0; margin-top: 16px;">Drafts <i class="far fa-save"></i></p>
     <div class="row">
