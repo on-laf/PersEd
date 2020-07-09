@@ -58,9 +58,13 @@ class FlashcardHomeworksController < ApplicationController
     @flashcard_homework.draft = false
     @flashcard_homework.sent = true
     authorize @flashcard_homework
-    @flashcard_homework.save
-    # rethink this redirect, it should be for the dashboard once it exists
-    redirect_to flashcard_sets_path
+    if @flashcard_homework.save
+      notification_sent(@flashcard_homework)
+      # rethink this redirect, it should be for the dashboard once it exists
+      redirect_to flashcard_sets_path
+    else
+      redirect_to @flashcard_homework, notice: "Homework not sent! Try again!"
+    end
   end
 
   private
@@ -75,5 +79,17 @@ class FlashcardHomeworksController < ApplicationController
 
   def flashcard_homework_params
     params.require(:flashcard_homework).permit(:name, :due_date, :group_id)
+  end
+
+  def notification_sent(homework)
+    @group = homework.group
+    @students = homework.group.students
+    @students.each do |student|
+      Notification.create(actor: current_user,
+                          recipient: student.user,
+                          action: 'sent',
+                          object: homework,
+                          notifiable: @group)
+    end
   end
 end

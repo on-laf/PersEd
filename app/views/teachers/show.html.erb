@@ -44,30 +44,31 @@
     </div>
 
     <div class="col-12 col-lg-8">
-    <h4> Homework Manager </h4>
-      <div class="notification">
-        <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-        <div class="notification-content">
-          <p><small>Owen Laugh-at-me</small></p>
-          <p>Submited <strong>Economics flashcards</strong> 20 cards set</p>
-        </div>
-        <div class="notification-actions">
-          <a href="#">Correct <i class="fas fa-pencil-alt"></i></a>
-          <a href="#">Archive <i class="far fa-trash-alt"></i></a>
-        </div>
-      </div>
-
-      <div class="notification">
-        <img src='https://kitt.lewagon.com/placeholder/users/Eschults' class="avatar-large"/>
-        <div class="notification-content">
-          <p><small>Mike Chick-Cat</small></p>
-          <p>Submitted <strong>Chemistry quiz</strong> 30 questions</p>
-        </div>
-        <div class="notification-actions">
-          <a href="#">Correct <i class="fas fa-pencil-alt"></i></a>
-          <a href="#">Archive <i class="far fa-trash-alt"></i></a>
-        </div>
-      </div>
+      <h4> Homework Manager </h4>
+      <% if !@notifications.empty? %>
+        <% @notifications.each do |notification| %>
+          <% if notification.action == 'submit' %>
+            <div class="notification">
+              <div>
+                <% if notification.actor.profile_photo? %>
+                  <%= cl_image_tag notification.actor.photo.key, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
+                <% else %>
+                  <%= icon('fas', 'user-circle', class: 'avatar-large avatar-large-icon') %>
+                <% end %>
+              </div>
+              <div class="notification-content">
+                <p><small><%= notification.created_at.strftime("%A, %d %B") %></small></p>
+                <p><%= "#{notification.actor.student.first_name} #{notification.actor.student.last_name}" %> <strong>submitted homework</strong> "<%= notification.object.flashcard_homework.name %>"</p>
+              </div>
+              <div class="notification-actions">
+                <%= link_to student_flashcard_set_path(notification.object) do %>
+                  Correct <i class="fas fa-pencil-alt"></i>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

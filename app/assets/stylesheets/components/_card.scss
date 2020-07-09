@@ -97,7 +97,7 @@
   align-items: center;
   margin-bottom: 8px;
   background: white;
-  padding: 8px 16px;
+  padding: 12px 16px;
   box-shadow: 0 0 5px $shadow;
   border-radius: 3px;
 }
@@ -124,11 +124,13 @@
 
 .notification .notification-actions a {
   color: #999999;
-  margin-left: 16px;
-  font-size: 14px;
+  font-size: 16px;
+  min-width: 80px;
+  text-align: right;
 }
 
 .notification .notification-actions a:hover {
   color: #555555;
+  text-decoration: none;
 }
 

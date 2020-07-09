@@ -24,4 +24,8 @@ class StudentFlashcardPolicy < ApplicationPolicy
   def destroy?
     record.flashcard_template.teacher == user.teacher
   end
+
+  def add_feedback?
+    record.flashcard_template.teacher == user.teacher
+  end
 end
