@@ -88,7 +88,7 @@ class FlashcardHomeworksController < ApplicationController
       Notification.create(actor: current_user,
                           recipient: student.user,
                           action: 'sent',
-                          message: "#{current_teacher.first_name} #{current_teacher.last_name} sent homework#{homework.due_date.nil? ? '' : homework.due_date.strftime(', due on %d/%m/%Y')}",
+                          object: homework,
                           notifiable: @group)
     end
   end
