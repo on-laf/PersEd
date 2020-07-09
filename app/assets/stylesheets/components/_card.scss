@@ -6,6 +6,14 @@
   overflow: hidden;
 }
 
+.card-submitted {
+  background: $jasmine;
+  box-shadow: 0 0 5px $shadow;
+  border-radius: 10px;
+  padding: 16px;
+  overflow: hidden;
+}
+
 .flashcard_sets_card {
   height: 250px;
 }
