@@ -7,6 +7,9 @@ function createChannel(...args) {
     consumer = cable.createConsumer();
   }
 
+  console.log('creating channel!');
+  console.log(consumer);
+
   return consumer.subscriptions.create(...args);
 }
 
