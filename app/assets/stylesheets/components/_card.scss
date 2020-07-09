@@ -1,6 +1,6 @@
 .card {
   background: white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  box-shadow: 0 0 5px $shadow;
   border-radius: 3px;
   padding: 16px;
   overflow: hidden;
@@ -58,12 +58,13 @@
 
 .card-box {
   overflow: hidden;
-  height: 120px;
+  max-width: 250px;
   background: white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  box-shadow: 0 0 5px $shadow;
   display: flex;
   align-items: center;
   border-radius: 3px;
+  padding: 16px;
 }
 
 .card-box img {
@@ -73,23 +74,23 @@
   object-fit: cover;
 }
 
-.card-box h2 {
+.card-box h6 {
+  font-family: Roboto;
   font-size: 16px;
   font-weight: bold;
   margin: 0;
 }
 
 .card-box p {
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.4;
   // opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
+  margin: 0;
 }
 
-.card-box .card-box-infos {
-  padding: 16px;
-}
+// .card-box .card-box-infos {
+//   padding: 16px;
+// }
 
 .notification {
   display: flex;
@@ -97,8 +98,7 @@
   margin-bottom: 8px;
   background: white;
   padding: 8px 16px;
-  border: 1px solid rgb(235,235,235);
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  box-shadow: 0 0 5px $shadow;
   border-radius: 3px;
 }
 
