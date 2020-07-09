@@ -29,7 +29,8 @@ Rails.application.routes.draw do
       get :flop_submit
     end
   end
-  resources :notifications do
+  # don't have notifications index, but how else do I put the post in here?
+  resources :notifications, only: [:index] do
     collection do
       post :mark_as_read
     end
