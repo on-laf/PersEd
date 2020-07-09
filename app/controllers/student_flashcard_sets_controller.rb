@@ -18,8 +18,12 @@ class StudentFlashcardSetsController < ApplicationController
     @student_flashcard_set = StudentFlashcardSet.find(params[:id])
     @student_flashcard_set.submitted = true
     authorize @student_flashcard_set
-    @student_flashcard_set.save
-    redirect_to student_flashcard_sets_path
+    if @student_flashcard_set.save
+      notification_submit(@student_flashcard_set)
+      redirect_to student_flashcard_sets_path
+    else
+      redirect_to @student_flashcard_set, notice: "Homework not submitted! Try again!"
+    end
   end
 
   private
@@ -41,5 +45,14 @@ class StudentFlashcardSetsController < ApplicationController
       return false if card.student_answer.nil?
     end
     return true
+  end
+
+  def notification_submit(set)
+    @teacher = set.flashcard_homework.flashcard_set.teacher
+    Notification.create(actor: current_user,
+                        recipient: @teacher.user,
+                        action: 'submit',
+                        object: set,
+                        notifiable: @teacher)
   end
 end
