@@ -4,5 +4,13 @@ class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true
   belongs_to :object, polymorphic: true
 
+  after_commit -> { NotificationRelayJob.perform_later(self, count) }
+
   scope :unread, -> { where(read_at: nil) }
+
+  private
+
+  def count
+    recipient.notifications.unread.size
+  end
 end
