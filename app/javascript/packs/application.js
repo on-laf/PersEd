@@ -27,7 +27,7 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { clearAll } from '../components/notifications.js';
+import { clearAll } from '../components/notifications';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:

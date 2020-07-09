@@ -4,7 +4,7 @@ const markAsRead = () => {
           method: 'post',
           headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-Token': Rails.csrfToken()
+            // 'X-CSRF-Token': Rails.csrfToken()
           },
           credentials: 'same-origin'
   })
@@ -16,4 +16,4 @@ const clearAll = () => {
   clearButton.addEventListener('click', markAsRead);
 };
 
-export { clearAll }
+export { clearAll };
