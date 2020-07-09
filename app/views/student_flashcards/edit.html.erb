@@ -12,7 +12,7 @@
   <% end %>
   <% if !@flashcard_homework.sent %>
     <!-- teachers can personalize -->
-    <%= simple_form_for [@student_flashcard_set, @student_flashcard] do |f| %>
+    <%= simple_form_for [@student_flashcard_set, @student_flashcard], method: :patch do |f| %>
       <%= f.input :question, label: "Question:", input_html: {value: @student_flashcard.question, style: 'height:2.5em;'}, autofocus: true %>
       <%= f.input :answer, label: "Answer:", input_html: {value: @student_flashcard.answer, style: 'height:2.5em;'} %>
       <div>
