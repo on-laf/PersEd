@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_132105) do
+ActiveRecord::Schema.define(version: 2020_07_09_204705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,10 +107,10 @@ ActiveRecord::Schema.define(version: 2020_07_09_132105) do
     t.text "student_answer"
     t.text "feedback"
     t.boolean "completed", default: false
-    t.bigint "flashcard_template_id", null: false
     t.bigint "student_flashcard_set_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "flashcard_template_id"
     t.index ["flashcard_template_id"], name: "index_student_flashcards_on_flashcard_template_id"
     t.index ["student_flashcard_set_id"], name: "index_student_flashcards_on_student_flashcard_set_id"
   end
