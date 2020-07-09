@@ -44,37 +44,9 @@
       <% if !@notifications.empty? %>
         <% @notifications.each do |notification| %>
           <% if notification.action == 'sent' %>
-            <div class="notification">
-              <div>
-                <i class="fas fa-clipboard-list" style="font-size: 36px; color: #fed9b7;"></i>
-              </div>
-              <div class="notification-content">
-                <p><small><%= notification.created_at.strftime("%A, %d %B") %></small></p>
-                <p><%= "#{notification.actor.teacher.first_name} #{notification.actor.teacher.last_name}" %> <strong>sent homework</strong><%= notification.object.due_date.nil? ? '' : notification.object.due_date.strftime(', due on %d/%m/%Y') %></p>
-              </div>
-              <div class="notification-actions">
-                <%= link_to student_flashcard_set_path(notification.object.student_flashcard_sets.find_by(student: current_student)) do %>
-                  Solve <i class="fas fa-pencil-alt"></i>
-                <% end %>
-              </div>
-            </div>
+            <%= render 'notifications/groups/sent', notification: notification %>
           <% elsif notification.action == 'feedback' %>
-            <!-- this is all wrong -->
-            <div class="notification">
-              <div>
-                <i class="fas fa-clipboard-check" style="font-size: 36px; color: #00afb9;"></i>
-              </div>
-              <div class="notification-content">
-                <p><small><%= notification.created_at.strftime("%A, %d %B") %></small></p>
-                <%= "#{notification.actor.teacher.first_name} #{notification.actor.teacher.last_name}" %> gave you <strong>feedback</strong> on <%= "#{notification.object.flashcard_homework.name}" %>
-              </div>
-              <div class="notification-actions">
-                <%= link_to student_flashcard_set_path(notification.object) do %>
-                  Read <i class="fas fa-book-open"></i>
-                <% end %>
-              </div>
-            </div>
-            <!-- untill here -->
+            <%= render 'notifications/groups/feedback', notification: notification %>
           <% end %>
         <% end %>
       <% end %>

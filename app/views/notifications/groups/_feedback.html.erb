@@ -1,0 +1,14 @@
+<div class="notification">
+  <div>
+    <i class="fas fa-clipboard-check" style="font-size: 36px; color: #00afb9;"></i>
+  </div>
+  <div class="notification-content">
+    <p><small><%= notification.created_at.strftime("%A, %d %B") %></small></p>
+    <%= "#{notification.actor.teacher.first_name} #{notification.actor.teacher.last_name}" %> gave you <strong>feedback</strong> on <%= "#{notification.object.flashcard_homework.name}" %>
+  </div>
+  <div class="notification-actions">
+    <%= link_to student_flashcard_set_path(notification.object) do %>
+      Read <i class="fas fa-book-open"></i>
+    <% end %>
+  </div>
+</div>
