@@ -13,7 +13,7 @@
   <% if !@flashcard_homework.sent %>
     <!-- teachers can personalize -->
     <%= simple_form_for [@student_flashcard_set, @student_flashcard] do |f| %>
-      <%= f.input :question, label: "Question:", input_html: {value: @student_flashcard.question, style: 'height:2.5em;'} %>
+      <%= f.input :question, label: "Question:", input_html: {value: @student_flashcard.question, style: 'height:2.5em;'}, autofocus: true %>
       <%= f.input :answer, label: "Answer:", input_html: {value: @student_flashcard.answer, style: 'height:2.5em;'} %>
       <div>
         <%= f.submit 'Update flashcard', class: 'our-btn btn-marine mr-2' %>
@@ -35,7 +35,7 @@
     <!-- students can answer -->
     <h3><%= @student_flashcard.question %></h3>
     <%= simple_form_for [@student_flashcard_set, @student_flashcard] do |f| %>
-      <%= f.input :student_answer, label: "Answer:" %>
+      <%= f.input :student_answer, label: "Answer:", autofocus: true %>
       <div>
         <%= f.submit 'Save answer', class: 'our-btn btn-marine' %>
         <%= link_to 'Cancel', student_flashcard_set_path(@student_flashcard_set), class: "our-btn btn-salmon ml-2" %>
