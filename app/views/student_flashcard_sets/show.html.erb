@@ -62,7 +62,11 @@
     <div class="row">
       <% @student_flashcards.order(:updated_at).each do |sf| %>
         <div class="col-12 col-md-6 col-lg-4">
-          <div class="card my-3">
+          <% if sf.student_answer.nil? %>
+            <div class="card my-3">
+          <% else %>
+            <div class="card-submitted my-3">
+          <% end %>
             <p><strong><%= sf.question %></strong></p>
             <% if sf.student_answer.nil? %>
               <%= link_to 'Answer', edit_student_flashcard_set_student_flashcard_path(@student_flashcard_set, sf), class: "our-btn btn-marine"%>
