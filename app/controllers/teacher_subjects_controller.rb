@@ -2,13 +2,17 @@ class TeacherSubjectsController < ApplicationController
   def create
     @teacher = Teacher.find(params[:teacher_id])
     authorize @teacher
-    @teacher_subject = TeacherSubject.new(teacher_subject_params)
-    @teacher_subject.teacher = @teacher
-    authorize @teacher_subject
-    if @teacher_subject.save
-      redirect_to teacher_path(@teacher)
-    else
-      render 'teachers/show'
+    if params[:teacher_subject][:subject_id] != ""
+      @teacher_subject = TeacherSubject.new(teacher_subject_params)
+      @teacher_subject.teacher = @teacher
+      authorize @teacher_subject
+      if @teacher_subject.save
+        redirect_to teacher_path(@teacher)
+      else
+        render 'teachers/show'
+      end
+    # else
+    #   flash.alert = "choose a subject!"
     end
   end
 
