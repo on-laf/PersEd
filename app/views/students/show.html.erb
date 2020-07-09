@@ -41,6 +41,19 @@
 
     <div class="col-12 col-lg-8">
       <h4> Homework Manager </h4>
+      <% if !@notifications.empty? %>
+        <% @notifications.each do |notification| %>
+          <div class="card card-horizontal">
+            <div class="card-horizontal-parcel">
+              <i class="fas fa-clipboard-list" style="font-size: 36px; color: #fed9b7;"></i>
+            </div>
+            <div class="card-horizontal-parcel">
+              <p><small><%= notification.created_at.strftime("%A, %d %B") %></small></p>
+              <%= notification %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
       <div class="notification">
         <i class="fas fa-clipboard-list" style="font-size: 36px; color: #fed9b7;"></i>
         <div class="notification-content">

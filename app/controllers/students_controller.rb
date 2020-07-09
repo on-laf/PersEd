@@ -11,6 +11,7 @@ class StudentsController < ApplicationController
     authorize @students_groups
     @students_group = StudentsGroup.new
     authorize @students_group
+    @notifications = current_user.notifications
   end
 
   def new
