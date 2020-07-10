@@ -6,7 +6,11 @@ class NotificationsController < ApplicationController
 
   def mark_as_read
     @notifications.update_all(read_at: Time.zone.now)
-    redirect_to teacher_path(current_teacher)
+    if teacher?
+      redirect_to teacher_path(current_teacher)
+    else
+      redirect_to student_path(current_student)
+    end
   end
 
   private

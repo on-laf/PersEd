@@ -40,8 +40,17 @@
     </div>
 
     <div class="col-12 col-lg-8">
-      <h4> Homework Manager </h4>
-      <% if !@notifications.empty? %>
+      <% if @notifications.empty? %>
+        <div class="mb-3">
+          <h4> Homework Manager </h4>
+        </div>
+      <% else %>
+        <div class="d-flex mb-3">
+          <h4 style="flex-grow: 1;"> Homework Manager </h4>
+          <%= link_to mark_as_read_notifications_path, class: "our-btn btn-peach" do %>
+            Clear all <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </div>
         <div data-behavior="notifications-counter">
           <span id="counter" class="notifications text-center"></span>
           <div id="notifications">
