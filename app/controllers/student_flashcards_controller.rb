@@ -57,7 +57,7 @@ class StudentFlashcardsController < ApplicationController
     authorize @student_flashcard
     @student_flashcard_set = StudentFlashcardSet.find(params[:student_flashcard_set_id])
     if @student_flashcard.update(student_flashcard_params)
-      notification_feedback(@student_flashcard, @student_flashcard_set)
+      notification_feedback(@student_flashcard_set)
       redirect_to student_flashcard_set_path(@student_flashcard_set)
     else
       render :edit
@@ -74,15 +74,17 @@ class StudentFlashcardsController < ApplicationController
     params.require(:student_flashcard).permit(:question, :answer, :student_answer, :feedback, :completed, :flashcard_template_id, :student_flashcard_set_id)
   end
 
-  def notification_feedback(card, set)
+  def notification_feedback(set)
     @group = set.flashcard_homework.group
     @students = set.flashcard_homework.group.students
     @students.each do |student|
-      Notification.create(actor: current_user,
-                          recipient: student.user,
-                          action: 'feedback',
-                          object: set,
-                          notifiable: @group)
+      notification = Notification.create(actor: current_user,
+                                         recipient: student.user,
+                                         action: 'feedback',
+                                         object: set,
+                                         notifiable: @group)
+      html = ApplicationController.render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: { notification: notification, check_current_user: false }, formats: [:html]
+      ActionCable.server.broadcast "notifications:#{notification.recipient_id}", notification: html, count: notification.count
     end
   end
 end

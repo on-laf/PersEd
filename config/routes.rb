@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   # don't have notifications index, but how else do I put the post in here?
   resources :notifications, only: [:index] do
     collection do
-      post :mark_as_read
+      get :mark_as_read
     end
   end
 end

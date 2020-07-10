@@ -12,10 +12,10 @@ class Notification < ApplicationRecord
     recipient.notifications.unread.size
   end
 
-  private
+  # private
 
-  def broadcast_messages(notification, count)
-    html = ApplicationController.render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: { notification: notification, check_current_user: false }, formats: [:html]
-    ActionCable.server.broadcast "notifications:#{notification.recipient_id}", notification: html, count: count
-  end
+  # def broadcast_messages(notification, count)
+  #   html = ApplicationController.render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: { notification: notification, check_current_user: false }, formats: [:html]
+  #   ActionCable.server.broadcast "notifications:#{notification.recipient_id}", notification: html, count: count
+  # end
 end
