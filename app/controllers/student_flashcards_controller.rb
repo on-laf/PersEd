@@ -84,7 +84,7 @@ class StudentFlashcardsController < ApplicationController
                                          object: set,
                                          notifiable: @group)
       html = ApplicationController.render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: { notification: notification, check_current_user: false }, formats: [:html]
-      ActionCable.server.broadcast "notifications:#{notification.recipient_id}", notification: html, count: notification.count
+      ActionCable.server.broadcast "notifications:#{notification.recipient_id}", notification: html
     end
   end
 end

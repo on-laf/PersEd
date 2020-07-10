@@ -90,9 +90,8 @@ class FlashcardHomeworksController < ApplicationController
                                          action: 'sent',
                                          object: homework,
                                          notifiable: @group)
-      # NotificationsChannel.broadcast_to("notifications:#{current_user.id}", notification)
       html = ApplicationController.render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: { notification: notification, check_current_user: false, student: student }, formats: [:html]
-      ActionCable.server.broadcast "notifications:#{notification.recipient_id}", notification: html, count: notification.count
+      ActionCable.server.broadcast "notifications:#{notification.recipient_id}", notification: html
     end
   end
 end
