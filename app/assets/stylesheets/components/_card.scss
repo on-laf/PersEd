@@ -7,7 +7,7 @@
 }
 
 .card-submitted {
-  background: $jasmine;
+  background-color: rgba(220,220,220,0.2);
   box-shadow: 0 0 5px $shadow;
   border-radius: 10px;
   padding: 16px;
@@ -43,6 +43,12 @@
   &:hover {
     color: black;
   }
+}
+
+.flashcard {
+  min-height: 200px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .card-horizontal {
