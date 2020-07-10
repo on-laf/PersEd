@@ -2,6 +2,7 @@ class FlashcardHomeworksController < ApplicationController
   def new
     @flashcard_homework = FlashcardHomework.new
     authorize @flashcard_homework
+    @flashcard_sets = FlashcardSet.where(teacher: current_teacher)
     @groups = Group.where(teacher: current_teacher)
     authorize @groups
     if params[:flashcard_set]

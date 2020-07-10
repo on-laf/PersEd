@@ -3,10 +3,10 @@
   <div class="d-flex">
     <h1 style="flex-grow: 1; display: inline-block;"><%= @flashcard_homework.name %></h1>
     <% if !@flashcard_homework.sent %>
-      <%= link_to flop_send_flashcard_homework_path(@flashcard_homework), class: "our-btn btn-marine m-2" do %>
+      <%= link_to flop_send_flashcard_homework_path(@flashcard_homework), class: "our-btn btn-marine m-2", style: "min-width: 98px; max-height: 45px;" do %>
         Send  <i class="far fa-paper-plane"></i>
       <% end %>
-      <%= link_to flashcard_homeworks_path, class: "our-btn btn-outline-marine my-2" do %>
+      <%= link_to flashcard_homeworks_path, class: "our-btn btn-outline-marine my-2", style: "min-width: 135px; max-height: 45px;" do %>
         Save draft  <i class="far fa-save" style="font-size: 18px;"></i>
       <% end %>
     <% end %>

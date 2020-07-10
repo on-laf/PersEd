@@ -11,7 +11,7 @@
       <%= f.hidden_field :flashcard_set, value: @flashcard_set.id %>
     <% else %>
       <%= f.input :name, input_html: { value: "Homework #{DateTime.now.strftime("on %d/%m/%Y")}" } %>
-      <%= f.association :flashcard_set %>
+      <%= f.association :flashcard_set, collection: @flashcard_sets %>
     <% end %>
     <%= f.association :group, label: 'Class', collection: @groups %>
     <%= f.input :due_date, as: :date, html5: true %>
