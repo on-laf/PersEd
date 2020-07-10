@@ -3,7 +3,7 @@
   <% if teacher? %>
     <div class="d-flex mb-3" style="align-items: center;">
       <% if @student_flashcard_set.student.user.profile_photo? %>
-        <%= cl_image_tag student.user.photo.key, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
+        <%= cl_image_tag @student_flashcard_set.student.user.photo.key, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
       <% else %>
         <%= icon('fas', 'user-circle', class: 'avatar-large avatar-large-icon') %>
       <% end %>
@@ -12,7 +12,7 @@
   <% end %>
   <% if !@flashcard_homework.sent %>
     <!-- teachers can personalize -->
-    <%= simple_form_for [@student_flashcard_set, @student_flashcard] do |f| %>
+    <%= simple_form_for [@student_flashcard_set, @student_flashcard], method: :patch do |f| %>
       <%= f.input :question, label: "Question:", input_html: {value: @student_flashcard.question, style: 'height:2.5em;'}, autofocus: true %>
       <%= f.input :answer, label: "Answer:", input_html: {value: @student_flashcard.answer, style: 'height:2.5em;'} %>
       <div>

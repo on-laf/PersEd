@@ -38,8 +38,9 @@ class FlashcardTemplatesController < ApplicationController
 
   def update
     authorize @flashcard_template
+    @flashcard_set = FlashcardSet.find(params[:flashcard_set_id])
     if @flashcard_template.update(flashcard_template_params)
-      redirect_to @flashcard_template
+      redirect_to flashcard_set_path(@flashcard_set)
     else
       render :edit
     end

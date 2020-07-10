@@ -14,8 +14,10 @@ class StudentFlashcardsController < ApplicationController
   def create
     @student_flashcard = StudentFlashcard.new(student_flashcard_params)
     @student_flashcard_set = StudentFlashcardSet.find(params[:student_flashcard_set_id])
-    @student_flashcard.flashcard_template = @flashcard_template
+    @student_flashcard.student_flashcard_set = @student_flashcard_set
     authorize @student_flashcard
+    @flashcard_homework = @student_flashcard_set.flashcard_homework
+    @student_flashcards = @student_flashcard_set.student_flashcards
     if @student_flashcard.save
       redirect_to student_flashcard_set_path(@student_flashcard_set)
     else

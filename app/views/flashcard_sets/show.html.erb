@@ -1,5 +1,8 @@
 <%= link_to 'Back', flashcard_sets_path, class: "our-btn btn-peach m-2" %>
 <div class="container mb-5">
+
+
+
   <div class="d-flex mb-3">
     <h1 style="flex-grow: 1;">
       <%= @flashcard_set.name %>
@@ -13,10 +16,36 @@
       <% end %>
     </h1>
     <%= link_to 'Set as homework', new_flashcard_homework_path(flashcard_set: @flashcard_set), class: "our-btn btn-marine my-2" %>
+
   </div>
-  <%= render "flashcard_templates/index",
-    flashcard_set: @flashcard_set,
-    flashcard_template: @flashcard_template,
-    flashcard_templates: @flashcard_templates %>
+
+  <button type="button" class="btn our-btn btn-outline-marine" data-toggle="modal" data-target="#exampleModal">
+    Create new flashcard
+  </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Flashcard Creator</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <%= render "flashcard_templates/flashcard",
+              flashcard_set: @flashcard_set,
+              flashcard_template: @flashcard_template,
+              flashcard_templates: @flashcard_templates %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5">
+    <%= render "flashcard_templates/index",
+        flashcard_set: @flashcard_set,
+        flashcard_template: @flashcard_template,
+        flashcard_templates: @flashcard_templates %>
+    </div>
 </div>
 

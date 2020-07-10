@@ -6,6 +6,15 @@
   overflow: hidden;
 }
 
+.card-submitted {
+  background-color: rgba($jasmine, 1);
+  opacity: 0.6;
+  box-shadow: 0 0 5px $shadow;
+  border-radius: 10px;
+  padding: 16px;
+  overflow: hidden;
+}
+
 .flashcard_sets_card {
   height: 250px;
 }
@@ -35,6 +44,12 @@
   &:hover {
     color: black;
   }
+}
+
+.flashcard {
+  min-height: 200px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .card-horizontal {

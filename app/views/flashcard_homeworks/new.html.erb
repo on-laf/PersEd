@@ -1,11 +1,20 @@
-<%= link_to 'Back', flashcard_set_path(@flashcard_set), class: "our-btn btn-peach m-2" %>
+<% if @flashcard_set %>
+  <%= link_to 'Back', flashcard_set_path(@flashcard_set), class: "our-btn btn-peach m-2" %>
+<% else %>
+  <%= link_to 'Back', flashcard_homeworks_path, class: "our-btn btn-peach m-2" %>
+<% end %>
 <div class="container">
   <h1>Set homework</h1>
   <%= simple_form_for @flashcard_homework do |f| %>
-    <%= f.input :name, input_html: { value: "#{@flashcard_set.name} #{DateTime.now.strftime("on %d/%m/%Y")}" } %>
+    <% if @flashcard_set %>
+      <%= f.input :name, input_html: { value: "#{@flashcard_set.name} #{DateTime.now.strftime("on %d/%m/%Y")}" } %>
+      <%= f.hidden_field :flashcard_set, value: @flashcard_set.id %>
+    <% else %>
+      <%= f.input :name, input_html: { value: "Homework #{DateTime.now.strftime("on %d/%m/%Y")}" } %>
+      <%= f.association :flashcard_set %>
+    <% end %>
     <%= f.association :group, label: 'Class', collection: @groups %>
     <%= f.input :due_date, as: :date, html5: true %>
-    <%= f.hidden_field :flashcard_set, value: @flashcard_set.id %>
     <%= f.submit 'Create new homework', class: 'our-btn btn-marine' %>
   <% end %>
 </div>
