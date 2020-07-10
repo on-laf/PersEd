@@ -55,7 +55,7 @@ class StudentFlashcardSetsController < ApplicationController
                                        action: 'submit',
                                        object: set,
                                        notifiable: @teacher)
-    html = ApplicationController.render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: { notification: notification, check_current_user: false }, formats: [:html]
-    ActionCable.server.broadcast "notifications:#{notification.recipient_id}", notification: html
+    # html = ApplicationController.render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: { notification: notification, check_current_user: false }, formats: [:html]
+    # ActionCable.server.broadcast "notifications:#{notification.recipient_id}", notification: html
   end
 end
