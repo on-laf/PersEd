@@ -3,10 +3,12 @@
     <% flashcard_templates.order(updated_at: :desc).each do |fs| %>
       <div class="col-12 col-md-6 col-lg-4">
         <%= link_to "#", class: "flashcard-link" do %>
-          <div class="card my-3">
+          <div class="card flashcard my-3">
             <div>
               <p><strong><%= fs.question %></strong></p>
               <p><%= fs.answer %></p>
+            </div>
+            <div>
               <%= link_to edit_flashcard_set_flashcard_template_path(flashcard_set, fs), class: "icon-link" do %>
                 <i class="fas fa-pencil-alt txt-link-marine"></i>
               <% end %>

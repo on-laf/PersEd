@@ -45,6 +45,12 @@
   }
 }
 
+.flashcard {
+  min-height: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .card-horizontal {
   display: flex;
   flex-direction: row;
