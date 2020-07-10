@@ -33,7 +33,7 @@
   <body style="min-height: 100vh;">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <div class="wrapper" style="min-height: 76vh;">
+    <div class="wrapper" style="min-height: 76vh;" data-page-action="<%= controller_name %>-<%= action_name %>" data-user-id="<%= current_user ? current_user.id : 0 %>">
       <%= yield %>
     </div>
     <%= render 'shared/footer' %>

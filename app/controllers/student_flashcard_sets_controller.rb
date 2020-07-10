@@ -50,10 +50,12 @@ class StudentFlashcardSetsController < ApplicationController
 
   def notification_submit(set)
     @teacher = set.flashcard_homework.flashcard_set.teacher
-    Notification.create(actor: current_user,
-                        recipient: @teacher.user,
-                        action: 'submit',
-                        object: set,
-                        notifiable: @teacher)
+    notification = Notification.create(actor: current_user,
+                                       recipient: @teacher.user,
+                                       action: 'submit',
+                                       object: set,
+                                       notifiable: @teacher)
+    html = ApplicationController.render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: { notification: notification, check_current_user: false }, formats: [:html]
+    ActionCable.server.broadcast "notifications:#{notification.recipient_id}", notification: html
   end
 end

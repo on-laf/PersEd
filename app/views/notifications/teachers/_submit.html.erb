@@ -1,0 +1,18 @@
+<div class="notification">
+  <div>
+    <% if notification.actor.profile_photo? %>
+      <%= cl_image_tag notification.actor.photo.key, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
+    <% else %>
+      <%= icon('fas', 'user-circle', class: 'avatar-large avatar-large-icon') %>
+    <% end %>
+  </div>
+  <div class="notification-content">
+    <p><small><%= notification.created_at.strftime("%A, %d %B") %></small></p>
+    <p><%= "#{notification.actor.student.first_name} #{notification.actor.student.last_name}" %> <strong>submitted homework</strong> "<%= notification.object.flashcard_homework.name %>"</p>
+  </div>
+  <div class="notification-actions">
+    <%= link_to student_flashcard_set_path(notification.object) do %>
+      Correct <i class="fas fa-pencil-alt"></i>
+    <% end %>
+  </div>
+</div>

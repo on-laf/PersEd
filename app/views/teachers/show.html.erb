@@ -44,30 +44,27 @@
     </div>
 
     <div class="col-12 col-lg-8">
-      <h4> Homework Manager </h4>
-      <% if !@notifications.empty? %>
-        <% @notifications.each do |notification| %>
-          <% if notification.action == 'submit' %>
-            <div class="notification">
-              <div>
-                <% if notification.actor.profile_photo? %>
-                  <%= cl_image_tag notification.actor.photo.key, height: 56, width: 56, crop: :thumb, gravity: :face, class: "avatar-large" %>
-                <% else %>
-                  <%= icon('fas', 'user-circle', class: 'avatar-large avatar-large-icon') %>
-                <% end %>
-              </div>
-              <div class="notification-content">
-                <p><small><%= notification.created_at.strftime("%A, %d %B") %></small></p>
-                <p><%= "#{notification.actor.student.first_name} #{notification.actor.student.last_name}" %> <strong>submitted homework</strong> "<%= notification.object.flashcard_homework.name %>"</p>
-              </div>
-              <div class="notification-actions">
-                <%= link_to student_flashcard_set_path(notification.object) do %>
-                  Correct <i class="fas fa-pencil-alt"></i>
-                <% end %>
-              </div>
-            </div>
+      <% if @notifications.empty? %>
+        <div class="mb-3">
+          <h4> Homework Manager </h4>
+        </div>
+      <% else %>
+        <div class="d-flex mb-3">
+          <h4 style="flex-grow: 1;"> Homework Manager </h4>
+          <%= link_to mark_as_read_notifications_path, class: "our-btn btn-peach" do %>
+            Clear all <i class="fas fa-trash-alt"></i>
           <% end %>
-        <% end %>
+        </div>
+        <div data-behavior="notifications-counter">
+          <span id="counter" class="notifications text-center"></span>
+          <div id="notifications">
+            <% @notifications.each do |notification| %>
+              <% if notification.action == 'submit' %>
+                <%= render 'notifications/teachers/submit', notification: notification %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

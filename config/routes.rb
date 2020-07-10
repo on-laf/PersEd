@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   devise_for :users, controllers: { registrations: 'registrations' }
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -27,6 +28,12 @@ Rails.application.routes.draw do
     end
     member do
       get :flop_submit
+    end
+  end
+  # don't have notifications index, but how else do I put the post in here?
+  resources :notifications, only: [:index] do
+    collection do
+      get :mark_as_read
     end
   end
 end
