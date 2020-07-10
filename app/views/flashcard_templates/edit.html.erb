@@ -1,7 +1,7 @@
 <div class="container my-5">
   <h1>Edit the flashcard</h1>
 
-  <%= simple_form_for [@flashcard_set, @flashcard_template] do |f| %>
+  <%= simple_form_for [@flashcard_set, @flashcard_template], method: :patch do |f| %>
     <%= f.input :question %>
     <%= f.input :answer %>
     <div>
