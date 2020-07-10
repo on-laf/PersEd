@@ -52,7 +52,7 @@ Topic.create(topic_name: "Development Economics", subject: Subject.find_by(subje
 puts 'Creating demo users...'
 
 demo_teacher_user = User.new(
-    email: "ze.pinto@nova.com",
+    email: "eoin@teach.com",
     password: '123456',
     password_confirmation: '123456'
     )
@@ -65,7 +65,7 @@ demo_teacher_user = User.new(
 demo_teacher_user.save
 
 demo_student_user = User.new(
-    email: "janis.howler@nova.com",
+    email: "mike@study.com",
     password: '123456',
     password_confirmation: '123456'
     )
@@ -131,7 +131,7 @@ new_flashcard_template2 = FlashcardTemplate.new(
 new_flashcard_template2.save
 
 new_flashcard_template3 = FlashcardTemplate.new(
-  question: "Explain, using examples, that economically less developed countries differ enormously from each other",
+  question: "How do economically less developed countries differ enormously from each other",
   answer: Faker::TvShows::BojackHorseman.quote,
   flashcard_set: new_flashcard_set_1,
   teacher: demo_teacher,
@@ -167,7 +167,7 @@ new_flashcard_template6 = FlashcardTemplate.new(
 new_flashcard_template6.save
 
 new_flashcard_template7 = FlashcardTemplate.new(
-  question: "Explain that composite indicators include more than one measure and so are considered to be better indicators of economic development.",
+  question: "Explain why composite indicators are often considered to be better indicators of economic development.",
   answer: Faker::TvShows::BojackHorseman.quote,
   flashcard_set: new_flashcard_set_1,
   teacher: demo_teacher,
@@ -176,7 +176,7 @@ new_flashcard_template7 = FlashcardTemplate.new(
 new_flashcard_template7.save
 
 new_flashcard_template8 = FlashcardTemplate.new(
-  question: "Explain why a country's GDP/ GNI per capita global ranking may be lower, or higher, than its HDI global ranking",
+  question: "Why might a country's GDP/ GNI per capita global ranking may be lower, or higher, than its HDI global ranking",
   answer: Faker::TvShows::BojackHorseman.quote,
   flashcard_set: new_flashcard_set_1,
   teacher: demo_teacher,
@@ -317,6 +317,7 @@ new_flashcard_set_9.save
 
 
       subjectcount = 101
+      studentcount = 1
       4.times do
           new_demo_group = Group.new(
             teacher: demo_teacher,
@@ -334,10 +335,11 @@ new_flashcard_set_9.save
 
             10.times do
               new_user = User.new(
-                email: Faker::Internet.email,
+                email: "demo#{studentcount}@demo.com",
                 password: '123456',
                 password_confirmation: '123456'
                 )
+              studentcount += 1
               # file = URI.open("https://thispersondoesnotexist.com/")
               # new_user.photo.attach(
               #   io: file,
